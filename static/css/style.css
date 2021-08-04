@@ -215,4 +215,36 @@ hr {
         display: inline-block;
     }
 
+    .footer__footer {
+        padding-bottom: 2.5rem;
+    }
+
+    .footer__line {
+        padding-bottom: 0.7rem;
+    }
+
+    .copyright {
+        position: relative;
+        float: left;
+        left: 0;
+        padding-top: 4rem;
+    }
+
+    .top {
+        position: relative;
+        float: right;
+        right: 1.5rem;
+        bottom: -0.5rem;
+    }
+
+}
+
+@media (max-width: 30em) {
+    .footer {
+        padding-bottom: 3rem;
+    }
+
+    .footer__footer {
+        padding-bottom: 3.5rem;
+    }
 }
