@@ -1,0 +1,7 @@
+{
+    "_id": "ObjectId()",
+    "product_image": "String",
+    "product_name": "String",
+    "product_link": "String",
+    "product_price": "String"
+}

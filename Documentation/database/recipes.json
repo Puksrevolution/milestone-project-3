@@ -1,0 +1,10 @@
+{
+    "_id": "ObjectId()",
+    "recipe_name": "String",
+    "image": "String",
+    "time": "String",
+    "difficulty": "String",
+    "ingredients": "String",
+    "directions": "String",
+    "created_by": "String"
+}
