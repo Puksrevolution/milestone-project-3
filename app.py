@@ -54,11 +54,6 @@ def sub():
             flash("Email already exists", "error")
             return redirect(request.referrer)
 
-        email = {
-            "email": request.form.get("email").lower()
-        }
-        mongo.db.newsletter.insert_one(email)
-
         sub = mongo.db.newsletter
         return_data = request.form.to_dict()
         sub.insert_one(return_data)
