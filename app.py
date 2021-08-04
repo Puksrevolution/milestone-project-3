@@ -48,6 +48,11 @@ def contact():
     return render_template("contact.html", page_title="Contact Us")
 
 
+@app.route("/about")
+def about():
+    return render_template("about.html", page_title="About Us")
+
+
 """
 Subscribe Newsletter Functionality
 collect the email address from input field and write to Mongo DB
