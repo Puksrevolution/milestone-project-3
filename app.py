@@ -37,6 +37,37 @@ def index():
                            random_recipes=random_recipes)
 
 
+"""
+Subscribe Newsletter Functionality
+collect the email address from input field and write to Mongo DB
+"""
+
+
+@app.route('/sub', methods=['POST'])
+def sub():
+    if request.method == "POST":
+        # check if username already exists in db
+        existing_email = mongo.db.newsletter.find_one(
+            {"email": request.form.get("email").lower()})
+
+        if existing_email:
+            flash("Email already exists", "error")
+            return redirect(request.referrer)
+
+        email = {
+            "email": request.form.get("email").lower()
+        }
+        mongo.db.newsletter.insert_one(email)
+
+        sub = mongo.db.newsletter
+        return_data = request.form.to_dict()
+        sub.insert_one(return_data)
+        flash("Successfully Subscribed", "success")
+        return redirect(request.referrer)
+
+    return redirect(request.referrer)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

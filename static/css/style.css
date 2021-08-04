@@ -209,6 +209,24 @@ hr {
     border: 1px solid #6D6A75;
 }
 
+/*Flash Messages*/
+.flashes h4 {
+    background-color: #E3DFFF;
+    box-shadow: 0 0 0.5rem #6D6A75;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1rem;
+    line-height: 2;
+    text-decoration: underline;
+}
+
+.success {
+    color: #28a745;
+}
+
+.error {
+    color: rgb(230, 0, 42);
+}
+
 /* Media Queries */
 @media (max-width: 48em) {
     .navbar .navbar-nav .nav-link {

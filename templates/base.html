@@ -84,6 +84,7 @@
             </div>
         </div>
     </nav>
+
     <!-- Main Heading -->
     <header class="header" id="top">
         <div class="container">
@@ -92,6 +93,22 @@
             <h1 class="pt-1">{{ page_title }}</h1>
         </div>
     </header>
+
+    <!-- flash messages -->
+    <section>
+        <div class="container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="row justify-content-center mt-4 flashes">
+                <h4 class="text-center py-2 {{ category }}">{{ message }}</h4>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+    </section>
+
     <!-- Main Container -->
     <main class="main">
         <div class="container">
@@ -99,6 +116,7 @@
             {% endblock %}
         </div>
     </main>    
+    
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -130,7 +148,7 @@
                     </div>
                     <!-- Subscribe Newsletter -->
                     <div class="col-12 col-md-7 pt-3">
-                        <form method="POST" action="#">
+                        <form method="POST" action="{{url_for('sub')}}">
                             <h3 class="text-center pb-2">Get our Newsletter</h3>
                             <input class="form-control form__input-email" id="email" type="email" name="email"
                                 placeholder="Email-Address" aria-label="Search" required>
