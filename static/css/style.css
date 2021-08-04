@@ -209,6 +209,17 @@ hr {
     border: 1px solid #6D6A75;
 }
 
+/*Utility Classes*/
+.link {
+    padding-top: 0.5rem;
+    text-shadow: 0 0 0.15rem #6D6A75;
+}
+.link:hover {
+    color: #6D6A75;
+    text-shadow: none;
+    text-decoration: underline;
+}
+
 /*Flash Messages*/
 .flashes h4 {
     background-color: #E3DFFF;

@@ -23,6 +23,12 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+"""
+Render the Home, Article and
+all the Footer pages
+"""
+
+
 @app.route("/")
 def index():
     # 6 random recipes #
@@ -35,6 +41,11 @@ def index():
                            page_title="Yummy Recipes",
                            recipes=recipes,
                            random_recipes=random_recipes)
+
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html", page_title="Contact Us")
 
 
 """
