@@ -63,6 +63,16 @@ def accessibility():
     return render_template("accessibility.html", page_title="Accessibility")
 
 
+@app.route("/terms")
+def terms():
+    return render_template("terms.html", page_title="Terms of Use & Policies")
+
+
+@app.route("/privacy")
+def privacy():
+    return render_template("privacy.html", page_title="Privacy Policy")
+
+
 """
 Subscribe Newsletter Functionality
 collect the email address from input field and write to Mongo DB

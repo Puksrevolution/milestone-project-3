@@ -220,6 +220,15 @@ hr {
     text-decoration: underline;
 }
 
+.ul__list {
+    margin-top: 0.5rem;
+    margin-left: 1.5rem;
+}
+
+.ul__list-item {
+    padding-bottom: 0.5rem;
+}
+
 /*Flash Messages*/
 .flashes h4 {
     background-color: #E3DFFF;
