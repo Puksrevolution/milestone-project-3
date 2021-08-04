@@ -58,6 +58,11 @@ def advertising():
     return render_template("advertising.html", page_title="Advertising Policy")
 
 
+@app.route("/accessibility")
+def accessibility():
+    return render_template("accessibility.html", page_title="Accessibility")
+
+
 """
 Subscribe Newsletter Functionality
 collect the email address from input field and write to Mongo DB
