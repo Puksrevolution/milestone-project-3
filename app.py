@@ -35,12 +35,18 @@ def index():
     recipes = mongo.db.recipes
     random_recipes = (
         [recipe for recipe in recipes.aggregate([
-            {"$sample": {"size": 6}}])]
-    )
+            {"$sample": {"size": 6}}])])
+    # 3 random products #
+    products = mongo.db.products
+    random_products = (
+        [product for product in products.aggregate([
+            {"$sample": {"size": 3}}])])
     return render_template("index.html",
                            page_title="Yummy Recipes",
                            recipes=recipes,
-                           random_recipes=random_recipes)
+                           random_recipes=random_recipes,
+                           products=products,
+                           random_products=random_products)
 
 
 @app.route("/contact")

@@ -128,7 +128,6 @@ hr {
 .footer__icons--instagram {
     color: #ff008c;
 }
-
 .footer__icons--instagram:hover {
     color: #e02b8f;
 }
@@ -136,7 +135,6 @@ hr {
 .footer__icons--facebook {
     color: #0051ff;
 }
-
 .footer__icons--facebook:hover {
     color: #4d73c5;
 }
@@ -144,7 +142,6 @@ hr {
 .footer__icons--youtube {
     color: #ff0000;
 }
-
 .footer__icons--youtube:hover {
     color: #df2121;
 }
@@ -198,6 +195,153 @@ hr {
     background-color: #E3DFFF;
 }
 
+.btn-buy {
+    width: 70%;
+}
+
+/*Cards*/
+/*Gallery Cards*/
+.gallery__card {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery__image {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 1rem #6D6A75;
+    border-radius: 0.85rem;
+    filter: contrast(1.1) brightness(1.15) saturate(1.1);
+    transform: scale(1);
+    z-index: 0;
+    transition: filter 0.2s ease-in-out, box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out, z-index 0.2s linear;
+}
+
+
+.gallery__heading {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem 0 0.5rem 1rem;
+    color: #FEF9EF;
+    text-shadow: 0 0 1rem black,
+        0 0 1rem black,
+        0 0 1rem black,
+        0 0 1rem black,
+        0 0 1rem black;
+    z-index: 12;
+}
+
+.gallery__image:hover {
+    box-shadow: 0 0 1rem #0F0A0A;
+    transform: scale(1.1);
+    z-index: 10;
+    transition: filter 0.2s ease-in-out, box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out, z-index 0s linear;
+    filter: contrast(1) brightness(1) saturate(1);
+}
+
+/*Product Cards*/
+.products__container {
+    perspective: 50rem;
+}
+
+.products__card {
+    position: relative;
+    box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.5);
+}
+
+.products__image-container {
+    position: relative;
+    background-color: #FEF9EF;
+}
+
+.products__image-container::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.products__image-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4rem;
+    background-image: linear-gradient(-7.7391704773deg, #e3dfff 49.7%, transparent 50.3%);
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+}
+
+.products__image {
+    width: 100%;
+    height: 10rem;
+}
+
+.products__card-body {
+    background-color: #e3dfff;
+    height: 5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.products__card-hover {
+    position: absolute;
+    top: -0.0625rem;
+    left: -0.0625rem;
+    right: -0.0625rem;
+    bottom: -0.0625rem;
+    z-index: 2;
+    background-color: #e3dfff;
+    background-image: linear-gradient(90deg, transparent calc(50% - 0.03125rem), #FEF9EF calc(50% - 0.03125rem), #FEF9EF calc(50% + 0.03125rem), transparent calc(50% + 0.03125rem)), linear-gradient(135deg, #e3dfff 0%, #e3dfff 100%);
+    background-repeat: no-repeat, no-repeat;
+    background-position: center top, center center;
+    background-size: 100% calc(50% - 4rem), 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+}
+
+.products__card:hover .products__card-hover {
+    opacity: 1;
+}
+
+.products__container .products__card {
+    transition: transform 1s ease-in-out;
+    transform-style: preserve-3d;
+}
+
+.products__container:hover .products__card {
+    transform: rotateY(180deg);
+}
+
+.products__container .products__card-front {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: rotateY(0deg);
+    transform-style: preserve-3d;
+}
+
+.products__container .products__card-hover {
+    transform: rotateY(180deg);
+    opacity: 1;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
 /*Form*/
 .form-control {
     border: 1px solid #6D6A75;
@@ -210,6 +354,18 @@ hr {
 }
 
 /*Utility Classes*/
+.underline:hover {
+    text-decoration: underline;
+}
+
+.rounded-border {
+    border-radius: 0.75rem;
+}
+
+.shadow-box {
+    box-shadow: 0 0 1rem #0F0A0A;
+}
+
 .link {
     padding-top: 0.5rem;
     text-shadow: 0 0 0.15rem #6D6A75;

@@ -218,7 +218,7 @@ The chosed fonts are [Comfortaa](https://fonts.google.com/specimen/Comfortaa?sta
 The font for the content Logo was created using [Arial Rounded MT Bold](https://docs.microsoft.com/sv-se/typography/font-list/arial-rounded-mt) to give it a rounded harmonic look.
 
 ### **Imagery** ###
-<img src="Documentation/imagery/CookHat.svg" style="width: 40px;">
+<img src="Documentation/imagery/CookHat.svg">
 <img src="Documentation/imagery/CookBook.svg"><br>
 
 A simple and good recognisable Icon and Logo/Brand, designed and created by the developer with [paint.net](https://www.getpaint.net/roadmap.html).

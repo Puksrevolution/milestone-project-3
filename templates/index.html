@@ -1,13 +1,105 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% for recipe in random_recipes %}
-        {{ recipe.recipe_name }}<br>
-        {{ recipe.image }}<br>
-        {{ recipe.time }}<br>
-        {{ recipe.difficulty }}<br>
-        {{ recipe.ingredients }}<br>
-        {{ recipe.directions }}<br>
-        {{ recipe.created_by }}<br>              
-    {% endfor %} 
+<!-- Intro -->
+<div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-lg-8">
+        <p>
+            Dicover here at CookBook always the right recipe idea for: <br> cooking or baking,
+            after work, for guests or parties, in spring, summer, autumn and winter.
+        </p>
+        <p>
+            Sing Up to get your own profile to view, add, store and share recipes in a modern way
+            and to create a collection of your favourite recipes.
+        </p>
+    </div>
+</div>
+
+<!-- Article -->
+<div class="row justify-content-center mt-5">
+    <a href="#">
+        <div class="col-12">
+            <div class="row ">
+                <div class="col-12 col-md-6 mb-4">
+                    <h3 class="underline text-center">
+                        How to Get Rid of Fruit Flies for Good
+                    </h3>
+                    <p class="pt-3">These DIY tips will rid your home of these pesky pests once and for all.</p>
+                    <p>
+                        As I live alone, I have never been one to stock up on items like produce.
+                        If I bought too much, it'd go bad before I got to use it.
+                        But with tightening budgets and the desire to avoid too ...
+                        <small class="link"><strong><u>READ MORE HERE</u></strong></small>
+                    </p>
+                    <p><strong>By Aly Walansky</strong> | <small class="text-muted">July 15, 2021</small></p>
+                </div>
+                <div class="col-12 col-md-6  align-self-center">
+                    <img class="card-img rounded-border shadow-box" alt="Article Image"
+                        src="https://www.thespruce.com/thmb/BoR2HaUJB9eMAq4Ppid79DtwIMk=/1500x1001/filters:fill(auto,1)/what-is-a-fruit-fly-2656677-hero-ec0c068408644cd8805b78f5ca618b08.jpg">
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- Gallery -->
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-center mt-5 mb-4">
+            Recipe Gallery
+        </h2>
+    </div>
+</div>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    {% for recipe in random_recipes %}
+    <div class="col mb-4">
+        <div class="gallery__card">
+            <a href="#">
+                <img class="gallery__image" alt="Recipe Image" src="{{ recipe.image }}">
+                <div class="gallery__heading">
+                    <h5>{{ recipe.recipe_name }}</h5>
+                </div>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block Products %}
+<!-- Products -->
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-center mt-5">
+            Kitchen
+        </h2>
+        <hr>
+        <h4 class="text-center mb-5">Tools & Helpers</h4>
+    </div>
+</div>
+<!-- Products -->
+<div class="row justify-content-center">
+    {% for product in random_products %}
+    <div class="col-10 col-sm-4 col-lg-3 mb-4">
+        <div class="products__container">
+            <div class="products__card">
+                <div class="products__card-front">
+                    <div class="products__image-container">
+                        <img class="products__image mt-4" src="{{ product.product_image }}" alt="Kitchen Tools">
+                    </div>
+                    <div class="products__card-body">
+                        <h6 class="text-center px-3 pb-4">{{ product.product_name }}</h6>
+                    </div>
+                </div>
+                <div class="products__card-hover">
+                    <a class="btn btn-sm btn-buy" target="_blank" rel="noreferrer"
+                        href="{{ product.product_link }}">
+                        Buy It: {{ product.product_price }} Amazon
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
