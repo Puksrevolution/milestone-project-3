@@ -136,8 +136,7 @@ def signup():
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!", "success")
-        # return redirect(url_for("profile", username=session["user"]))
-        return redirect(url_for("signup"))
+        return redirect(url_for("profile", username=session["user"]))        
 
     return render_template("signup.html", page_title="Sign Up",
                            products=products,
@@ -168,8 +167,7 @@ def signin():
                 session["user"] = request.form.get("username").lower()
                 # Welcome message and direct to Profile page
                 flash("Welome Back!", "success")
-                # return redirect(url_for("profile", username=session["user"]))
-                return redirect(url_for("signin"))
+                return redirect(url_for("profile", username=session["user"]))                
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password", "error")
@@ -193,6 +191,55 @@ def signout():
     flash("You have been logged out", "success")
     session.pop("user")
     return redirect(url_for('index'))
+
+
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    # 3 random products #
+    products = mongo.db.products
+    random_products = (
+        [product for product in products.aggregate([
+            {"$sample": {"size": 3}}])])
+    """
+    Render the user profile page using the logged in user's
+    data in the database.
+    """
+    # Retrieve users and recipes to use on profile page #
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    users = list(mongo.db.users.find())
+    recipes = list(mongo.db.recipes.find())
+    favourite_recipes = mongo.db.users.find_one(
+                {"username": session["user"]})["favourite_recipes"]
+    # Favourites Array #
+    favourites = []
+    # Push to Favourites Array #
+    for recipe in favourite_recipes:
+        favourites.append(mongo.db.recipes.find_one({"_id": recipe}))
+    # Change Password #
+    if session["user"]:
+        if request.method == "POST":
+            # finds the Users-Profile in db
+            users = mongo.db.users.find_one(
+                {"username": session["user"]})
+            # Edit Password functionality #
+            if str(request.form.get("password")) == str(
+                    request.form.get("confirm-password")):
+                newvalue = {"$set": {"password": generate_password_hash(
+                    str(request.form.get("password")))}}
+                mongo.db.users.update_one(users, newvalue)
+                flash("Password successfully updated!", "success")
+                return redirect(url_for(
+                    "profile", username=session["user"]))
+            else:
+                flash("Password don't match, try again!", "error")
+        return render_template(
+            "profile.html", username=username, users=users,
+            recipes=recipes, favourites=favourites,
+            random_products=random_products)
+
+    return redirect(url_for("login"))
+
 
 
 """

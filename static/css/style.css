@@ -576,6 +576,20 @@ form .form__input-icon {
     padding-bottom: 0.5rem;
 }
 
+.fs {
+    font-size: 1.3rem;
+}
+
+/*Icon*/
+.fas.fa-user-circle {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.fa-heart {
+    color: #9A031Efa;
+}
+
 /*Flash Messages*/
 .flashes h4 {
     background-color: #E3DFFF;
