@@ -19,47 +19,46 @@
     </div>
 </div>
 
-<!-- Recipe Cards -->
-{% if recipes|length > 0 %}
-<div class="mt-5">
-    <div class="row justify-content-center">
-        {% for recipe in recipes %}
-        <div class="col-10 col-md-6 col-lg-4 align-self-center mb-4">            
-            <div class="card recipes__card-image">
-                <a href="{{ url_for('view_recipe', recipe_id=recipe._id) }}">
-                    <img class="recipes__image" alt="Recipe Image" src="{{ recipe.image }}">
-                </a>
-            </div>            
-        </div>
-        <div class="col-10 col-md-5 pb-5">
-            <div>
-                <h3 class="underline text-center pt-3">
-                    <a href="{{ url_for('view_recipe', recipe_id=recipe._id) }}">
-                        {{ recipe.recipe_name }}</a>                        
-                </h3>
-                <div class="row justify-content-center">
-                    <ul class="pt pt-lg-3">
-                        <li class="fas fa-clock recipe__icon recipe__icon-right"> <span class="recipe__icon-text">Cook: {{ recipe.time }}</span></li>
-                        <i class="fas fa-signal recipe__icon"> <span class="recipe__icon-text">Difficulty: {{ recipe.difficulty }}</span></i>                         
-                    </ul>
+<!-- One Recipe -->
+<div class="row justify-content-center mt-5">
+    <div class="col-md-auto">
+        <div class="d-flex">
+            <div style="width: 40rem;">
+                <h2 class="text-center mb-3">{{ recipe.recipe_name }}</h2>                
+                <div class="card">                    
+                    <img class="card-img rounded-border shadow-box" src="{{ recipe.image }}" alt="Recipe Image" width="100%" aria-label="Placeholder: Card image">
+                    <h5 class="user"><i class="far fa-user-circle user__icon"></i> {{ recipe.created_by }}</h5>
                 </div>
-                <div class="row justify-content-center mt-3">
-                    <div class="col-12 text-center">
-                        <small><i class="far fa-user-circle user__icon"></i><strong> By</strong> {{ recipe.created_by }}</small>
-                    </div>                               
-                </div>
+                <h3 class="text-center pt-4">Ingredients</h3>
+                <hr>
+                <p class="text-center mb-3 pt-2">
+                    <small class="text-muted">
+                        <i class="fas fa-hourglass-half pl-3"></i> Cook: {{ recipe.time }} 
+                        <i class="fas fa-signal  pl-3"></i> Difficulty: {{ recipe.difficulty }}
+                    </small>
+                </p>
+                <ul class="recipe_list-ingredients">
+                    <!-- For each ingredient line -->
+                    {% for line in recipe.ingredients.splitlines() %}
+                    <li>
+                        <p>{{line}}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <h3 class="text-center pt-4">Directions</h3>
+                <hr class="mb-4">
+                {% for line in recipe.directions.splitlines() %}
+                <p>
+                    {{line}}
+                </p>
+                {% endfor %}
             </div>
-        </div>
-        {% endfor %}
+        </div>        
+            <div class="col-12 text-center mt-3">
+                <a class="btn btn-dimgray" href="{{ url_for('all_recipes') }}">Back to Recipes</a>
+            </div>
+        </div>                    
     </div>
-</div>
-{% else %}
-<h2 class="text-center text-danger mt-5"><strong>No Results Found</strong></h2>
-{% endif %}
-
-<!-- Pagination links -->
-<div class="row justify-content-center mt-3">
-    {{ pagination.links }}
 </div>
 {% endblock %}
 

@@ -239,6 +239,16 @@ hr {
     color: #E3DFFF;
 }
 
+.btn-dimgray {
+    background-color: #6D6A75;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: #FEF9EF;
+}
+.btn-dimgray:hover {
+    background-color: #E3DFFF;
+}
+
 /*Cards*/
 .card {
     background-color: transparent;
@@ -303,6 +313,10 @@ hr {
     filter: contrast(1.1) brightness(1.15) saturate(1.1);
 }
 
+.recipe_list-ingredients {
+    margin: 2rem 0 1rem 2.5rem;
+}
+
 .recipe__icon {
     font-size: 0.9rem;
 }
@@ -318,6 +332,18 @@ hr {
 
 .user__icon {
     font-size: 1.3rem;
+}
+
+.user {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 1rem;
+    color: #FEF9EF;
+    text-shadow: 0 0 1rem black,
+        0 0 1rem black,
+        0 0 1rem black,
+        0 0 1rem black,
+        0 0 1rem black;
 }
 
 /*Article Product Card*/

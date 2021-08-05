@@ -131,6 +131,25 @@ def all_recipes():
                            random_products=random_products)
 
 
+@app.route("/view_recipe/<recipe_id>", methods=["GET", "POST"])
+def view_recipe(recipe_id):
+    """
+    Get the recipe details for the selected recipe and
+    render the View Recipe Page
+    """
+    # Get one recipe from DB #
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    # 3 random products #
+    products = mongo.db.products
+    random_products = (
+        [product for product in products.aggregate([
+            {"$sample": {"size": 3}}])])
+    return render_template("view_recipe.html", recipe=recipe,
+                           products=products,
+                           random_products=random_products,
+                           page_title="Recipe")
+
+
 @app.route("/search", methods=["GET", "POST"])
 def search():
     """
