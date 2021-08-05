@@ -136,9 +136,51 @@ def signup():
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!", "success")
+        # return redirect(url_for("profile", username=session["user"]))
         return redirect(url_for("signup"))
 
     return render_template("signup.html", page_title="Sign Up",
+                           products=products,
+                           random_products=random_products)
+
+
+@app.route("/signin", methods=["GET", "POST"])
+def signin():
+    # 3 random products #
+    products = mongo.db.products
+    random_products = (
+        [product for product in products.aggregate([
+            {"$sample": {"size": 3}}])])
+    """
+    Allows the user to sign in with username and password.
+    Checks for validity of username and password entered.
+    Redirects user to profile page after successful login.
+    """
+    if request.method == "POST":
+        # check if username exists in db
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            # ensure hashed password matches user input
+            if check_password_hash(
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                # Welcome message and direct to Profile page
+                flash("Welome Back!", "success")
+                # return redirect(url_for("profile", username=session["user"]))
+                return redirect(url_for("signin"))
+            else:
+                # invalid password match
+                flash("Incorrect Username and/or Password", "error")
+                return redirect(url_for("signin"))
+
+        else:
+            # username doesn't exist
+            flash("Incorrect Username and/or Password", "error")
+            return redirect(url_for("signin"))
+
+    return render_template("signin.html", page_title="Sign In",
                            products=products,
                            random_products=random_products)
 
