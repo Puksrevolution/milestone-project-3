@@ -486,14 +486,62 @@ hr {
 }
 
 /*Form*/
+.form {
+    margin-bottom: 1rem;
+}
+
+.form__group {
+    position: relative;
+    margin-bottom: 0.9rem;
+    padding: 0;
+}
+
 .form-control {
     border: 1px solid #6D6A75;
+}
+
+.form__input {
+    width: 100%;
+    padding: .4rem 0 .4rem 3rem;
+    border: 1px solid #6D6A75;
+    border-radius: .25rem;
+}
+.form__input:focus {
+    outline-color: #9A031E;
+}
+.form__input::placeholder {
+    color: transparent;
 }
 
 .form__input-email {
     display: inline;
     width: 50%;
     border: 1px solid #6D6A75;
+}
+
+.form__label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1rem;
+    margin: 0.4rem 4rem;
+    transform-origin: 0% 20%;
+    transform: scale(1) translate(0, 0);
+    will-change: transform;
+    transition: transform 0.25s ease-in-out;
+}
+
+.form__input:focus~.form__label,
+.form__input[placeholder]:not(:placeholder-shown)~.form__label {
+    transform: scale(0.75) translate(0.4rem, 2.8rem);
+}
+
+form .form__input-icon {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0.6rem 1rem;
+    font-size: 1.3rem;
 }
 
 /*Utility Classes*/

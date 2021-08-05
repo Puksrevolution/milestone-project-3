@@ -11,6 +11,7 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
@@ -97,6 +98,49 @@ def terms():
 @app.route("/privacy")
 def privacy():
     return render_template("privacy.html", page_title="Privacy Policy")
+
+
+"""
+User account management
+"""
+
+
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    # 3 random products #
+    products = mongo.db.products
+    random_products = (
+        [product for product in products.aggregate([
+            {"$sample": {"size": 3}}])])
+    """
+    Allows the user to create a new account with
+    a unique username and password
+    """
+    if request.method == "POST":
+        # check if username already exists in db
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            flash("Username already exists", "error")
+            return redirect(url_for("signup"))
+
+        # collect the signup form data and write to MongoDB
+        register = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password")),
+            "favourite_recipes": []
+        }
+        mongo.db.users.insert_one(register)
+
+        # put the new user into 'session' cookie
+        session["user"] = request.form.get("username").lower()
+        flash("Registration Successful!", "success")
+        return redirect(url_for("signup"))
+
+    return render_template("signup.html", page_title="Sign Up",
+                           products=products,
+                           random_products=random_products)
 
 
 """
