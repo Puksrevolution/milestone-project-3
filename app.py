@@ -49,6 +49,11 @@ def index():
                            random_products=random_products)
 
 
+@app.route("/article")
+def article():
+    return render_template("article.html", page_title="DIY Tips")
+
+
 @app.route("/contact")
 def contact():
     return render_template("contact.html", page_title="Contact Us")

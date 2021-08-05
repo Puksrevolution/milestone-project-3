@@ -199,7 +199,20 @@ hr {
     width: 70%;
 }
 
+.btn-lavender {
+    background-color: #E3DFFF;
+}
+.btn-lavender:hover {
+    background-color: #6D6A75;
+    color: #FEF9EF;
+}
+
 /*Cards*/
+.card {
+    background-color: transparent;
+    border: none;
+}
+
 /*Gallery Cards*/
 .gallery__card {
     position: relative;
@@ -221,7 +234,6 @@ hr {
     z-index: 0;
     transition: filter 0.2s ease-in-out, box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out, z-index 0.2s linear;
 }
-
 
 .gallery__heading {
     position: absolute;
@@ -246,7 +258,50 @@ hr {
     filter: contrast(1) brightness(1) saturate(1);
 }
 
-/*Product Cards*/
+/*Article Product Card*/
+.product__card {
+    border: 8px solid #e3dfff;
+    border-radius: 0.75rem;
+}
+
+.product__image-container {
+    position: relative;
+    background-color: #FEF9EF;
+    border: 7px solid #e3dfff;
+}
+
+.product__image-container::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.product__image-container::after {
+    content: "";
+    position: absolute;
+    bottom: -0.1rem;
+    left: -0.1rem;
+    right: -0.1rem;
+    height: 4rem;
+    background-image: linear-gradient(-7.7391704773deg, #e3dfff 49.7%, transparent 50.3%);
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+}
+
+.product__image {
+    width: 100%;
+    max-height: 15rem;
+}
+
+.product__card-body {
+    padding: 2rem 1rem;
+}
+
+/*3 Product Cards*/
 .products__container {
     perspective: 50rem;
 }
