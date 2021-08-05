@@ -5,6 +5,7 @@
 
 
 import os
+from flask_paginate import Pagination, get_page_parameter
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -21,6 +22,20 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
+
+
+# Pagination #
+PER_PAGE = 8
+
+
+def paginated(recipes, page):
+    offset = page * PER_PAGE - PER_PAGE
+    paginated_recipes = recipes[offset: offset + PER_PAGE]
+    pagination = Pagination(page=page, per_page=PER_PAGE, total=len(recipes))
+    return [
+        paginated_recipes,
+        pagination
+    ]
 
 
 """
@@ -96,11 +111,41 @@ def all_recipes():
     """
     # Get all recipes from DB #
     recipes = list(mongo.db.recipes.find().sort("_id", -1))
+    # Pagination #
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    pagination_obj = paginated(recipes, page)
+    paginated_recipes = pagination_obj[0]
+    pagination = pagination_obj[1]
 
     return render_template("recipes.html",
                            page_title="All Recipes",
-                           recipes=recipes)
+                           recipes=paginated_recipes,
+                           recipe_paginated=paginated_recipes,
+                           pagination=pagination)
 
+
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    """
+    Search function
+    filters the recipes based on the text index query.
+    """
+    # Search functionality #
+    query = request.form.get("query")
+    recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
+    # Pagination #
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    pagination_obj = paginated(recipes, page)
+    paginated_recipes = pagination_obj[0]
+    pagination = pagination_obj[1]
+
+    return render_template("recipes.html",
+                           page_title="Search Result",
+                           recipes=recipes,
+                           total=len(recipes),
+                           recipe_paginated=paginated_recipes,
+                           pagination=pagination,
+                           search=True)
 
 """
 Subscribe Newsletter Functionality

@@ -100,6 +100,28 @@ hr {
     border-radius: 1000px;
 }
 
+/*Pagination Navbar*/
+.pagination ul li {
+    display: inline-block;
+    margin: 0 0.2rem;
+    padding: 0 0.5rem;
+    list-style: none;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border: 1px solid hsl(0, 0%, 70%);
+    border-radius: 0.25rem;
+}
+
+.pagination ul li:hover {
+    color: #6D6A75;
+    text-decoration: underline;
+}
+
+.pagination .active>a {
+    color: #6D6A75;
+    text-decoration: underline;
+}
+
 /*Footer*/
 .footer {
     background-color: #e3dfff;
@@ -205,6 +227,16 @@ hr {
 .btn-lavender:hover {
     background-color: #6D6A75;
     color: #FEF9EF;
+}
+
+.btn-reset {
+    background-color: #9A031E;
+    margin-left: 0.5rem;
+    color: #E3DFFF;
+}
+.btn-reset:hover {
+    background-color: rgb(230, 0, 42);
+    color: #E3DFFF;
 }
 
 /*Cards*/
