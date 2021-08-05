@@ -258,6 +258,36 @@ hr {
     filter: contrast(1) brightness(1) saturate(1);
 }
 
+/*Recipes Cards*/
+.recipes__card-image {    
+    height: 11rem;
+    overflow: hidden;    
+    box-shadow: 0 0 1rem #0f0a0a;
+    border-radius: 0.75rem;
+}
+
+.recipes__image {
+    width: 100%;    
+    filter: contrast(1.1) brightness(1.15) saturate(1.1);
+}
+
+.recipe__icon {
+    font-size: 0.9rem;
+}
+
+.recipe__icon-right {
+    padding-right: 1rem;
+}
+
+.recipe__icon-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: smaller;
+}
+
+.user__icon {
+    font-size: 1.3rem;
+}
+
 /*Article Product Card*/
 .product__card {
     border: 8px solid #e3dfff;
@@ -463,37 +493,49 @@ hr {
     .navbar .navbar-nav .nav-link {
         display: inline-block;
     }
-
     .footer__footer {
         padding-bottom: 2.5rem;
     }
-
     .footer__line {
         padding-bottom: 0.7rem;
     }
-
     .copyright {
         position: relative;
         float: left;
         left: 0;
         padding-top: 4rem;
     }
-
     .top {
         position: relative;
         float: right;
         right: 1.5rem;
         bottom: -0.5rem;
     }
+    .recipe__icon {
+        font-size: 0.8rem;
+    }
+    .recipe__icon-right {
+        padding-right: 0.5rem;
+    }
+}
 
+@media (min-width: 36em) {
+    .pr {
+        padding-right: 0;
+    }
 }
 
 @media (max-width: 30em) {
     .footer {
         padding-bottom: 3rem;
     }
-
     .footer__footer {
         padding-bottom: 3.5rem;
+    }
+    .recipes__card-image {    
+        height: 10rem;        
+    }
+    .pt {
+        padding-top: 0.75rem;
     }
 }

@@ -85,6 +85,24 @@ def privacy():
 
 
 """
+Recipe CRUD Functionality
+"""
+
+
+@app.route("/all_recipes")
+def all_recipes():
+    """
+    Render the Recipes page for all site visitors
+    """
+    # Get all recipes from DB #
+    recipes = list(mongo.db.recipes.find().sort("_id", -1))
+
+    return render_template("recipes.html",
+                           page_title="All Recipes",
+                           recipes=recipes)
+
+
+"""
 Subscribe Newsletter Functionality
 collect the email address from input field and write to Mongo DB
 """
