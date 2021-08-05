@@ -185,6 +185,16 @@ def signin():
                            random_products=random_products)
 
 
+@ app.route('/signout')
+def signout():
+    """
+    Allows the user to logout and clear the session cookie
+    """
+    flash("You have been logged out", "success")
+    session.pop("user")
+    return redirect(url_for('index'))
+
+
 """
 Recipe CRUD Functionality
 """
