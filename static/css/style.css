@@ -249,6 +249,11 @@ hr {
     background-color: #E3DFFF;
 }
 
+.btn-heart:hover {
+    background-color: #ff6682;
+    color: #FEF9EF;
+}
+
 /*Cards*/
 .card {
     background-color: transparent;

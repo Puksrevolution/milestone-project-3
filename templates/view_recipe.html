@@ -4,17 +4,17 @@
 <!-- Search Box-->
 <div class="row justify-content-center mt-5">
     <div class="col-12 col-md-8 col-lg-6">
-        <form  action="{{ url_for('search') }}" method="post">
-            <div class="row g-3">                       
+        <form action="{{ url_for('search') }}" method="post">
+            <div class="row g-3">
                 <div class="col-6 font-weight-bolder">
                     <input class="form-control" type="search" name="query" id="query" minlength="3"
-                placeholder="Search Recipes" aria-label="Search" required>                   
-                </div>    
-                <div class="col-6 font-weight-bolder">                
+                        placeholder="Search Recipes" aria-label="Search" required>
+                </div>
+                <div class="col-6 font-weight-bolder">
                     <button class="btn btn-lavender" type="submit"><i class="fas fa-search"></i></button>
-                    <a class="btn btn-reset" href="{{ url_for('all_recipes') }}">Reset</a>               
-                </div>                                                
-            </div>            
+                    <a class="btn btn-reset" href="{{ url_for('all_recipes') }}">Reset</a>
+                </div>
+            </div>
         </form>
     </div>
 </div>
@@ -24,16 +24,17 @@
     <div class="col-md-auto">
         <div class="d-flex">
             <div style="width: 40rem;">
-                <h2 class="text-center mb-3">{{ recipe.recipe_name }}</h2>                
-                <div class="card">                    
-                    <img class="card-img rounded-border shadow-box" src="{{ recipe.image }}" alt="Recipe Image" width="100%" aria-label="Placeholder: Card image">
+                <h2 class="text-center mb-3">{{ recipe.recipe_name }}</h2>
+                <div class="card">
+                    <img class="card-img rounded-border shadow-box" src="{{ recipe.image }}" alt="Recipe Image"
+                        width="100%" aria-label="Placeholder: Card image">
                     <h5 class="user"><i class="far fa-user-circle user__icon"></i> {{ recipe.created_by }}</h5>
                 </div>
                 <h3 class="text-center pt-4">Ingredients</h3>
                 <hr>
                 <p class="text-center mb-3 pt-2">
                     <small class="text-muted">
-                        <i class="fas fa-hourglass-half pl-3"></i> Cook: {{ recipe.time }} 
+                        <i class="fas fa-hourglass-half pl-3"></i> Cook: {{ recipe.time }}
                         <i class="fas fa-signal  pl-3"></i> Difficulty: {{ recipe.difficulty }}
                     </small>
                 </p>
@@ -52,12 +53,19 @@
                     {{line}}
                 </p>
                 {% endfor %}
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-12 text-center mt-4">
+                {% if session.user|lower != "admin"|lower%}
+                <a class="btn btn-heart" href="{{ url_for('favourite_recipe', recipe_id=recipe._id) }}">
+                    <i class="fas fa-heart" id="like"></i>Add to Favourites</a>
+                {% endif %}
             </div>
-        </div>        
             <div class="col-12 text-center mt-3">
                 <a class="btn btn-dimgray" href="{{ url_for('all_recipes') }}">Back to Recipes</a>
             </div>
-        </div>                    
+        </div>
     </div>
 </div>
 {% endblock %}
@@ -88,8 +96,7 @@
                     </div>
                 </div>
                 <div class="products__card-hover">
-                    <a class="btn btn-sm btn-buy" target="_blank" rel="noreferrer"
-                        href="{{ product.product_link }}">
+                    <a class="btn btn-sm btn-buy" target="_blank" rel="noreferrer" href="{{ product.product_link }}">
                         Buy It: {{ product.product_price }} Amazon
                     </a>
                 </div>

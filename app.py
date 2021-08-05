@@ -241,7 +241,6 @@ def profile(username):
     return redirect(url_for("login"))
 
 
-
 """
 Recipe CRUD Functionality
 """
@@ -322,6 +321,36 @@ def search():
                            search=True,
                            products=products,
                            random_products=random_products)
+
+
+"""
+Recipe favourite button functionality
+"""
+
+
+@app.route("/favourite_recipe/<recipe_id>", methods=["GET", "POST"])
+def favourite_recipe(recipe_id):
+    """
+    Allows the user to add a recipe to their personal
+    favourites list
+    """
+    favourites = mongo.db.users.find(
+        {"favourite_recipes": ObjectId(recipe_id)})
+    recipe = mongo.db.users.find_one(
+        {"favourite_recipes": ObjectId(recipe_id)})
+    # Check favourite is not already added #
+    if recipe in favourites:
+        flash("This recipe is already in your favourites!", "error")
+        return redirect(url_for("all_recipes"))
+
+    # Add recipeId to favourites array in user collection #
+    else:
+        mongo.db.users.find_one_and_update(
+            {"username": session["user"].lower()},
+            {"$push": {"favourite_recipes": ObjectId(recipe_id)}})
+        flash("Recipe added to your favourites!", "success")
+        return redirect(url_for("profile", username=session["user"]))
+
 
 """
 Subscribe Newsletter Functionality
