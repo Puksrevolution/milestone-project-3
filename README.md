@@ -549,10 +549,34 @@ Credits
 ======
 
 ### **Images** ###
+You can find the images used for the site [here](static/images). I have sourced them through various websites, which are either free to use or used under license:
 
+- Recipe Images
+  - The image URLs for the Recipe Images are sourced from the [All Recipes](https://www.allrecipes.com/) web page and used purely for educational purposes only to demonstrate the app backend CRUD functionality.
+- Article Images
+  - The image URLs for the Article Images are sourced from  the [Simply Recipes](https://www.simplyrecipes.com/) web page and used purely for educational purposes only.
+- Product Images
+  - The image URLs for the Prouduct Images are sourced from the [Amazon](https://www.amazon.com/) web page and used purely for educational purposes only.
+- Error Image
+  - The [Error Pages Text Background Image](static/images/pexels-ella-olsson-1458694.jpg) was sourced from [Pexels](https://www.pexels.com/) web page and used purely for educational purposes only.
 
 ### **Content** ###
-
+- Recipe Content
+  - The content for the Recipes was sourced from the [All Recipes](https://www.allrecipes.com/) web page and used purely for educational purposes only to demonstrate the app backend CRUD functionality.
+- Further Recipe Content
+  - Further content for recipes will be provided by users
+- Article Content
+  - The content for the Article was sourced from the [Simply Recipes](https://www.simplyrecipes.com/) web page and used purely for educational purposes only.
+- Contact, About Us, Advertise and Terms Of Use Content
+  - The content for the Contact, About Us, Advertise and Terms Of Use was sourced from the [Simply Recipes](https://www.simplyrecipes.com/) web page and used purely for educational purposes only.
+- Accessibility and Privacy Policy Content
+  - The content for the Accessibility and Privacy Policy was sourced from the [Chrysalis Coding](http://chrysalis-coding.herokuapp.com/), get customized to match the needs of the app application and used purely for educational purposes only.
+- Product Content
+  - The content for the Prouducts was sourced from the [Amazon](https://www.amazon.com/) web page and used purely for educational purposes only.
+- Error content
+  - The content for the Error Pages was sourced from the GitHub repository of [Simon Vardy](https://github.com/simonjvardy/the-reading-room/tree/master/templates/error-handling) and used purely for educational purposes only.
+- README.md
+  - Some of the content and structure was sourced from the GitHub repository of [Simon Vardy](https://github.com/simonjvardy/the-reading-room/tree/master/templates/error-handling), customized and used purely for educational purposes only.
 
 ### **Code** ###
 
