@@ -56,12 +56,12 @@
             </div>            
         </div>
         <div class="row">
-            <div class="col-12 text-center mt-4">
-                {% if session.user|lower != "admin"|lower%}
+            {% if session.user %}
+            <div class="col-12 text-center mt-4">                
                 <a class="btn btn-heart" href="{{ url_for('favourite_recipe', recipe_id=recipe._id) }}">
-                    <i class="fas fa-heart" id="like"></i>Add to Favourites</a>
-                {% endif %}
+                    <i class="fas fa-heart" id="like"></i>Add to Favourites</a>                
             </div>
+            {% endif %}
             <div class="col-12 text-center mt-3">
                 <a class="btn btn-dimgray" href="{{ url_for('all_recipes') }}">Back to Recipes</a>
             </div>
