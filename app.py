@@ -292,6 +292,32 @@ def view_recipe(recipe_id):
                            page_title="Recipe")
 
 
+@app.route("/add_recipe", methods=["GET", "POST"])
+def add_recipe():
+    """
+    Render the Add Recipe page if a user is logged in.
+    """
+    # collect the add recipe form data and write to MongoD
+    if request.method == "POST":
+        recipe = {
+            "recipe_name": request.form.get("recipe_name"),
+            "image": request.form.get("image"),
+            "time": request.form.get("time"),
+            "difficulty": request.form.get("difficulty"),
+            "ingredients": request.form.get("ingredients"),
+            "directions": request.form.get("directions"),
+            "created_by": request.form.get("created_by"),
+            "user": session["user"]
+        }
+        # add collect data to recipes DB #
+        mongo.db.recipes.insert_one(recipe)
+        flash("Recipe Successfully Added", "success")
+        return redirect(url_for("profile", username=session["user"]))
+
+    return render_template("add_recipe.html",
+                           page_title="Add Recipe")
+
+
 @app.route("/search", methods=["GET", "POST"])
 def search():
     """
