@@ -318,6 +318,23 @@ def add_recipe():
                            page_title="Add Recipe")
 
 
+@app.route("/delete_recipe/<recipe_id>")
+def delete_recipe(recipe_id):
+    """
+    Delete Recipe function
+    deletes the selected Recipe from the database.
+    """
+    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+    list(mongo.db.users.find(
+        {"favourite_recipes": ObjectId(recipe_id)}))
+    # Remove recipe from array in DB #
+    mongo.db.users.find_one_and_update(
+            {"username": session["user"].lower()},
+            {"$pull": {"favourite_recipes": ObjectId(recipe_id)}})
+    flash("Recipe Successfully Deleted", "success")
+    return redirect(url_for("profile", username=session["user"]))
+
+
 @app.route("/search", methods=["GET", "POST"])
 def search():
     """
