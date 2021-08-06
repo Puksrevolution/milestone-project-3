@@ -324,7 +324,7 @@ def search():
 
 
 """
-Recipe favourite button functionality
+Recipe add favourite button functionality
 """
 
 
@@ -350,6 +350,27 @@ def favourite_recipe(recipe_id):
             {"$push": {"favourite_recipes": ObjectId(recipe_id)}})
         flash("Recipe added to your favourites!", "success")
         return redirect(url_for("profile", username=session["user"]))
+
+
+"""
+Recipe remove favourite button functionality
+"""
+
+
+@app.route("/remove_recipe/<recipe_id>", methods=["GET", "POST"])
+def remove_recipe(recipe_id):
+    """
+    Remove Recipe function
+    removes the favourite Recipe from the database.
+    """
+    favourites = list(mongo.db.users.find(
+        {"favourite_recipes": ObjectId(recipe_id)}))
+    mongo.db.users.find_one_and_update(
+        {"username": session["user"].lower()},
+        {"$pull": {"favourite_recipes": ObjectId(recipe_id)}})
+    flash("Recipe removed from your favourites!", "success")
+    return redirect(url_for(
+        "profile", username=session["user"], favourites=favourites))
 
 
 """

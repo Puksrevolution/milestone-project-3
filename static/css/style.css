@@ -254,6 +254,12 @@ hr {
     color: #FEF9EF;
 }
 
+.btn-remove {
+    margin-left: 1rem;
+    padding: 0 0.2rem;
+    border: 0.09rem solid #E3DFFF;
+}
+
 /*Cards*/
 .card {
     background-color: transparent;
@@ -595,6 +601,11 @@ form .form__input-icon {
     color: #9A031Efa;
 }
 
+.fa-minus {
+    color: #9A031E;
+    font-size: small;
+}
+
 /*Flash Messages*/
 .flashes h4 {
     background-color: #E3DFFF;
@@ -611,6 +622,23 @@ form .form__input-icon {
 
 .error {
     color: rgb(230, 0, 42);
+}
+
+/*Hover Text*/
+a.remove:hover {
+    position: relative
+}
+a.remove span {
+    display: none;
+}
+a.remove:hover span {  
+    position: absolute;
+    display: block;
+    top: -0.1rem; 
+    left: 0.5rem;
+    padding: 0 0 0 1rem;
+    color: #9A031E;
+    z-index: 100;      
 }
 
 /* Media Queries */

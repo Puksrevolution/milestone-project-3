@@ -36,8 +36,12 @@
         <!-- Favourite Names and remove function -->
         {% for recipe in favourites %}
         <div class="mb-2">
-            <h6 class="favourite underline"><a href="{{ url_for('view_recipe', recipe_id=recipe._id) }}">
+            <h6 class="favourite underline">
+                <a href="{{ url_for('view_recipe', recipe_id=recipe._id) }}">
                     {{ recipe.recipe_name }} </a>
+                <a class="btn-sm btn-remove remove" href="{{ url_for('remove_recipe', recipe_id=recipe._id) }}">
+                        <i class="fas fa-minus" id="like_minus"></i><span>Remove</span></a>
+            </h6>
         </div>
         {% endfor %}
     </div>
