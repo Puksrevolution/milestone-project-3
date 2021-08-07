@@ -17,7 +17,7 @@ Screenshot
 
 All screenshots created using [Am I responsive](http://ami.responsivedesign.is/).
 
-<img src="Documentation/screenshots/...">
+<img src="Documentation/screenshots/MS3.png">
 
 ---
 # Table of contents
