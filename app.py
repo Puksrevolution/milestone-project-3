@@ -318,6 +318,47 @@ def add_recipe():
                            page_title="Add Recipe")
 
 
+@app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
+def edit_recipe(recipe_id):
+    """
+    Render the Edit Recipe page if a user is logged in.
+    """
+    # Request form fields #
+    if session["user"]:
+        if request.method == "POST":
+            # grab the session user's details from db
+            username = mongo.db.users.find_one(
+                {"username": session["user"]})
+            # grab the recipe details
+            recipe = mongo.db.recipes.find_one(
+                {"_id": ObjectId(recipe_id)})
+
+            # if it's user or admin then allow edit
+            if (session["user"] == recipe["user"] or
+                    username == "admin"):
+
+                recipe_edit = {
+                    "recipe_name": request.form.get("recipe_name"),
+                    "image": request.form.get("image"),
+                    "time": request.form.get("time"),
+                    "difficulty": request.form.get("difficulty"),
+                    "ingredients": request.form.get("ingredients"),
+                    "directions": request.form.get("directions"),
+                    "created_by": request.form.get("created_by"),
+                    "user": session["user"]
+                }
+                # update recipe on DB #
+                mongo.db.recipes.update_one(
+                    {"_id": ObjectId(recipe_id)},
+                    {"$set": recipe_edit})
+                flash("Recipe Successfully Updated", "success")
+                return redirect(url_for("profile", username=session["user"]))
+
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    return render_template(
+        "edit_recipe.html", recipe=recipe, page_title="Edit Recipe")
+
+
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
     """
@@ -377,22 +418,23 @@ def favourite_recipe(recipe_id):
     Allows the user to add a recipe to their personal
     favourites list
     """
-    favourites = mongo.db.users.find(
-        {"favourite_recipes": ObjectId(recipe_id)})
-    recipe = mongo.db.users.find_one(
-        {"favourite_recipes": ObjectId(recipe_id)})
-    # Check favourite is not already added #
-    if recipe in favourites:
-        flash("This recipe is already in your favourites!", "error")
-        return redirect(url_for("all_recipes"))
+    if session["user"]:
+        favourites = mongo.db.users.find(
+            {"favourite_recipes": ObjectId(recipe_id)})
+        recipe = mongo.db.users.find_one(
+            {"favourite_recipes": ObjectId(recipe_id)})
+        # Check favourite is not already added #
+        if recipe in favourites:
+            flash("This recipe is already in your favourites!", "error")
+            return redirect(url_for("all_recipes"))
 
-    # Add recipeId to favourites array in user collection #
-    else:
-        mongo.db.users.find_one_and_update(
-            {"username": session["user"].lower()},
-            {"$push": {"favourite_recipes": ObjectId(recipe_id)}})
-        flash("Recipe added to your favourites!", "success")
-        return redirect(url_for("profile", username=session["user"]))
+        # Add recipeId to favourites array in user collection #
+        else:
+            mongo.db.users.find_one_and_update(
+                {"username": session["user"].lower()},
+                {"$push": {"favourite_recipes": ObjectId(recipe_id)}})
+            flash("Recipe added to your favourites!", "success")
+            return redirect(url_for("profile", username=session["user"]))
 
 
 """
