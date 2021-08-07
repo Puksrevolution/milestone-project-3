@@ -1,3 +1,5 @@
+// Credit: Stuck Overflow
+
 // displays active location in navbars
 $(document).ready(function () {
     var scriptElement = $('#baseScript')[0];

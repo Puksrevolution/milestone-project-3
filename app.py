@@ -136,7 +136,7 @@ def signup():
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!", "success")
-        return redirect(url_for("profile", username=session["user"]))        
+        return redirect(url_for("profile", username=session["user"]))
 
     return render_template("signup.html", page_title="Sign Up",
                            products=products,
@@ -167,7 +167,7 @@ def signin():
                 session["user"] = request.form.get("username").lower()
                 # Welcome message and direct to Profile page
                 flash("Welome Back!", "success")
-                return redirect(url_for("profile", username=session["user"]))                
+                return redirect(url_for("profile", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password", "error")

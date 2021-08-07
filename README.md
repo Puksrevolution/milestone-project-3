@@ -580,8 +580,134 @@ You can find the images used for the site [here](static/images). I have sourced 
 
 ### **Code** ###
 
+All the Code Snippets I have sourced through various websites was adapedet and customized to macht the project needs and functionality.
+
+**[Code Institute](https://www.codeinstitute.net/)**
+- [Course Material Task Manager Flask App mini Project](https://github.com/Code-Institute-Solutions/TaskManagerAuth)
+  - HTML:
+    - Navbar
+    - Form
+  - Python:
+    - Configuration
+    - User account management
+    - CRUD Functionality    
+
+
+**[Bootstrap](https://getbootstrap.com/)**
+- HTML:
+  - Gallery Cards
+  - Add / Edit Form
+  - Article / Recipe Page
+
+**[Stack Overflow](https://stackoverflow.com/)**
+
+**Automatically update the Copyright Year**
+```
+JavaScript:
+
+document.getElementById("current-year").innerHTML = new Date().getFullYear();
+
+HTML:
+
+<span id="current-year"></span>
+```
+
+**CSS Flash Messages**
+```
+HTML:
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+    <div class="{{ category }}">{{ message }}</div>
+  {% endfor %}
+{% endwith %}
+
+CSS:
+
+.error {
+    color: red
+}
+
+Python:
+
+flash("This is an example text!", "error")
+
+```
+
+**Changing the active class of a link with css in python/flask**
+```
+JavaScript:
+
+$(document).ready(function () {
+    var scriptElement = $('#baseScript')[0];
+    var path = scriptElement.getAttribute('data-path');
+    $('a[href="'+path+'"]').addClass("active");
+});
+
+HTML:
+
+<script id="baseScript" src="{{ url_for('static', filename='js/base.js') }}"
+data-path="{{ request.path }}"></script>
+```
+
+**Hover over text**
+```
+HTML:
+
+<a href="#" class="tip">Link<span>This is the CSS tooltip showing up when you mouse over the link</span></a>
+
+
+CSS:
+
+a.tip {
+    border-bottom: 1px dashed;
+    text-decoration: none
+}
+a.tip:hover {
+    cursor: help;
+    position: relative
+}
+a.tip span {
+    display: none
+}
+a.tip:hover span {
+    border: #c0c0c0 1px dotted;
+    padding: 5px 20px 5px 5px;
+    display: block;
+    z-index: 100;
+    background: url(../images/status-info.png) #f0f0f0 no-repeat 100% 5%;
+    left: 0px;
+    margin: 10px;
+    width: 250px;
+    position: absolute;
+    top: 10px;
+    text-decoration: none
+}
+```
+
+**[Udemy](https://www.udemy.com/)**
+- [Jannis Seemann (CodingCourses.TV)](https://www.udemy.com/user/jannis-seemann-3/?src=sac&kw=Jannis+Seemann)
+  - CSS Code Snippet from Fortgeschrittenes CSS for the Product Cards
+
+**[GitHub](https://github.com/)**
+- [paulvmking](https://github.com/paulvmking/y)
+  - [Pagination](https://github.com/paulvmking/Pal-lette/blob/master/app.py)
+  - [Favourite functionality](https://github.com/paulvmking/Pal-lette/blob/master/app.py)
+- [simonjvardy](https://github.com/simonjvardy/)
+  - Some of the notes for the app.py
+  - [Error Pages HTML](https://github.com/simonjvardy/the-reading-room/tree/master/templates/error-handling)
+  - [Error Pages CSS](https://github.com/simonjvardy/the-reading-room/blob/master/static/css/error.css)
+- [andreasdk](https://github.com/andreasdk)
+  - [Random Recipes and Products functionality](https://github.com/andreasdk/dcd-recipes/blob/master/whisk/main/routes.py)
+- [sabinemm](https://github.com/sabinemm/)
+  - [Newsletter functionality](https://github.com/sabinemm/recipe-site-ms3/blob/master/app.py)
+- [StoneMasons4106](https://github.com/StoneMasons4106/)
+  - [Change Password functionality](https://github.com/StoneMasons4106/connect-recipes/blob/master/app.py)
 
 ### **Acknowledgements** ###
-
+- [Simon Vardy](https://github.com/simonjvardy/) for project inspiration and README.md format ideas.
+- [Paul King](https://github.com/paulvmking/) for project inspiration, web page content ideas, support and help..
+- [Code Institute](https://codeinstitute.net/full-stack-software-development-diploma/) Course material for the inspiration from code-along challenges, specifically the Task Manager and Thorin Flask apps.
+- [Stack Overflow](https://stackoverflow.com/) For help fixing so many thing that fell over on this project!
 
 [Back to Table of contents](#table-of-contents)
