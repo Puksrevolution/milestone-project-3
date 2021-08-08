@@ -641,6 +641,67 @@ a.remove:hover span {
     z-index: 100;      
 }
 
+/* Error-Handling Pages*/
+#notfound {
+    position: relative;
+    min-height: 80vh;
+}
+
+#notfound .notfound {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.notfound {
+    max-width: 410px;
+    width: 100%;
+    text-align: center;
+}
+
+.notfound .notfound-error {
+    height: 280px;
+    position: relative;
+    z-index: -1;
+}
+
+.notfound .notfound-error h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 230px;
+    margin: 0px;
+    font-weight: 900;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background: url('../images/pexels-ella-olsson-1458694.jpg') no-repeat;
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: cover;
+    background-position: center;
+}
+
+.notfound h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 2rem;
+}
+
+.notfound p {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #000;
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+
 /* Media Queries */
 @media (max-width: 48em) {
     .navbar .navbar-nav .nav-link {
@@ -669,6 +730,12 @@ a.remove:hover span {
     }
     .recipe__icon-right {
         padding-right: 0.5rem;
+    }
+    .notfound .notfound-error {
+        height: 142px;
+    }
+    .notfound .notfound-error h1 {
+        font-size: 112px;
     }
 }
 

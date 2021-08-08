@@ -484,6 +484,21 @@ def sub():
     return redirect(request.referrer)
 
 
+"""
+HTTP response error code handling.
+"""
+
+
+@app.errorhandler(404)
+def not_found(e):
+    """
+    Renders an error page for http error respons code 404
+    displaying a friendly template with a button that directs the user
+    back to the main page.
+    """
+    return (render_template('404.html'), 404)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
