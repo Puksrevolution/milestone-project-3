@@ -396,7 +396,18 @@ Features
 
   
 ### **Products** ###
+The Product section is at the bottom of the:
+- Home Page
+- Recipes Page
+- Recipe Page
+- Sing Up Page
+- Sing In Page
+- Profile Page
 
+The Product section contains: 
+- three cards with random products of the advertisers with an on click link direct the user to the original product site
+
+  ![Products](Documentation/layout/products.png)
 
 ### **User Alerts** ###
 - Coloured Flask flash messages and other alerts are used to feedback a range of different user actions:
@@ -429,12 +440,15 @@ Features
 - The pages provide a message to the user and a button to click to return the user to the home page.
 
     - HTTP 404 Error
+
     ![HTTP 404 Error](Documentation/error/404.png)
         
     - HTTP 500 Error
+
     ![HTTP 500 Error](Documentation/error/500.png)
 
     - HTTP 503 Error
+
     ![HTTP 503 Error](Documentation/error/503.png)
 
 ### **Future Features** ###
