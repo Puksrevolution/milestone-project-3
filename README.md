@@ -399,7 +399,30 @@ Features
 
 
 ### **User Alerts** ###
+- Coloured Flask flash messages and other alerts are used to feedback a range of different user actions:
 
+  - **Success**
+  
+  ![Sign Up](Documentation/flash-message/flash-sing-up.png)
+  ![Sign Out](Documentation/flash-message/flash-logged-out.png)
+  ![Sign In](Documentation/flash-message/flash-logged-in.png)  
+  ![Add Favourite](Documentation/flash-message/flash-add-favourite.png)
+  ![Remove Favourite](Documentation/flash-message/flash-favourite-removed.png)
+  ![Newsletter](Documentation/flash-message/flash-sub.png)
+  ![Password](Documentation/flash-message/flash-password.png)
+  ![Added](Documentation/flash-message/flash-added.png)
+  ![Update](Documentation/flash-message/flash-updated.png)
+  ![Deleted](Documentation/flash-message/flash-deleted.png)
+
+  - **Advisory & Warning**
+
+  ![Username Exists](Documentation/flash-message/flash-username.png)
+  ![Username Password](Documentation/flash-message/flash-wrong-UN-PW.png)
+  ![Password](Documentation/flash-message/flash-password-nomatch.png)
+  ![No Results](Documentation/flash-message/flash-noresults.png)
+  ![Already Favourite](Documentation/flash-message/flash-already-favourite.png)
+  ![Alert](Documentation/flash-message/alert-delete.png)  
+  ![Email Exists](Documentation/flash-message/flash-email-exists.png)
   
 ### **Additional Site features** ###
 - A set of friendly HTTP Error landing pages for site visitors to see if a requested page is unavailable or cannot be accessed.
