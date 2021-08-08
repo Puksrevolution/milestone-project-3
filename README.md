@@ -402,7 +402,17 @@ Features
 
   
 ### **Additional Site features** ###
+- A set of friendly HTTP Error landing pages for site visitors to see if a requested page is unavailable or cannot be accessed.
+- The pages provide a message to the user and a button to click to return the user to the home page.
 
+    - HTTP 404 Error
+    ![HTTP 404 Error](Documentation/error/404.png)
+        
+    - HTTP 500 Error
+    ![HTTP 500 Error](Documentation/error/500.png)
+
+    - HTTP 503 Error
+    ![HTTP 503 Error](Documentation/error/503.png)
 
 ### **Future Features** ###
 
