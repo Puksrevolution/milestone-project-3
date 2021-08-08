@@ -360,40 +360,161 @@ Features
 
 ### **Page Features and Layout** ###
 #### **Responsive Navbar** ####
+Responsive Navbar sticks at the top of the web page and changes at smaller screen sizes.
 
+The navbar contains:
+- the site Icon with a on click link redirect the user back to the home page
+- the site Logo/Brand with a on click link redirect the user back to the home page
+- a menu Icon for the collapsable navbar for small screen sizes
+
+*Screen Size min-width 768 px*
+![Responsive Navbar LG](Documentation/layout/navLG.png)
+![Responsive Navbar LG sign in](Documentation/layout/navLG-SI.png)
+
+*Screen Size max-width 768 px*
+![Responsive Navbar SM](Documentation/layout/navSM.png)
+![Responsive Navbar SM sign out](Documentation/layout/navSM-SO.png)
+![Responsive Navbar SM sign in](Documentation/layout/navSM-SI.png)
 
 #### **Footer** ####
+The footer contains:
+- Social Media Icons with social media on click links direct the user to Facebook, Instagram, Youtube
+- a field to subscribe with the email address to the newsletter
+- the copyright information with a current year JavaScript function
+- all law, contact and other informations for the web page with on click links direct the user to those pages
+- Icon with on click link direct the user back to the top of the page
 
+  ![Footer](Documentation/layout/footer.png)
 
 #### **Home Page** ####
+The home page contains: 
+- an intro text
+- a short description to an article page with image and a on click link direct the user to the article page
+- a gallery of six random recipe images with a on click link direct the user to the recipe page
 
+  ![Home Page](Documentation/layout/homePage.png)
 
 #### **Article Page** ####
+The article page contains: 
+- an interesting content with informations for a nice home
+- images for a nice visual look
+- in content on click links direct the user to the advertiser
+- product card for advertisers with an on click link button direct the user to the original product site
 
+  ![Article Page](Documentation/layout/articlePage.png)
 
 #### **Recipes Page** ####
+The recipes page contains:
+- a search field to filter the recipes with keywords
+- a reset button with an on click link redirect the user to the recipes page
+- recipe cards with a image of the recipe, recipe information and with an on click link direct the user to the recipe page
+- a pagination at the bottom of the page
 
+  ![Recipes Page](Documentation/layout/recipesPage.png)
+  
+- a favourite button to add a recipe to the favourite list only available to logged in users 
+
+  ![Favourite Button](Documentation/layout/recipesFav.png)
+
+- a edit and delete button only available for the Admin
+
+  ![Admin Button](Documentation/layout/recipesAdmin.png)
 
 #### **Recipe Page** ####
+The recipe page contains:
+- a search field to filter the recipes with keywords
+- a reset button with an on click link redirect the user to the recipes page
+- recipe name
+- a larg image of the recipe
+- total time 
+- difficulty
+- recipe ingredients
+- recipe directions
+- created_by
+- a button at the bottom of the page with an on click link redirect the user to the recipes page 
 
+  ![Recipe Page](Documentation/layout/recipePage.png)
+
+- a favourite button to add a recipe to the favourite list only available to logged in users 
+
+  ![Favourite Button](Documentation/layout/recipeFav.png)
+
+- a edit and delete button only available for the Admin
+
+  ![Admin Button](Documentation/layout/recipeAdmin.png)
 
 #### **User Sign Up Page** ####
-
+- New users are encouraged to create a new account to access more site features.
+- Usernames are required to be unique and are checked against existing usernames in the users collection
+- The user is required to complete all fields and check-box before the new user is saved to the users collection
+- There is an information under the form with an on click link redirect the user to the sing in page 
+  
+  ![Sign Up](Documentation/layout/signUp.png)
 
 #### **User Sign In Page** ####
+- The user name and password are validated against existing users in the users collection
+- Users will not be allowed to sign in if either the username or password are incorrect
+- There is an information under the form with an on click link redirect the user to the sing up page
 
+  ![Sign In](Documentation/layout/signIn.png)
 
 #### **Profile Page** ####
+The Profile page contains: 
+- a User Icon and a greeting with the users name
+- some informations about the feature on the profile page
+- a list with the summary of the user's favourites recipes with a remove button
+- a list with the summary of the user's added recipes with an edit and delete button
 
+  ![Profile Page](Documentation/layout/profilePage.png) 
+
+  ![Admin Profile](Documentation/layout/profileAdmin.png)
+
+- a complete list with all the recipes of the web page with an edit and delete button under each recipe
+
+  ![Change Password](Documentation/layout/changePassword.png)
+
+- a form to change the current password
+- the user needs to confirm the new password to avoid any typ errors
 
 #### **Add Recipe Page** ####
+- Users who are sing in can create a recipe by entering the recipe details in the add recipe form  
+- The Create Recipe button submits the form data to create a new document in the recipes database
 
+  ![Add Recipe](Documentation/layout/addRecipe.png)
 
 #### **Edit Recipe Page** ####
+- Only users who created the recipe are permitted to edit the recipe
+- Loading the page gets the current recipe data from the recipes collection and pre-fills the edit form
+- The red cancel button returns the user to the profile page without making any changes
+- The green edit button updates the recipe details with the new data from all the form input fields
 
+  ![Edit User](Documentation/layout/editRecipe.png)
+
+  ![Edit Admin](Documentation/layout/editAdminRecipe.png)
+
+- The Admin has the permission to edit and delete all the recipe
+- Loading the page gets the current recipe data from the recipes collection and pre-fills the edit form
+- The red cancel button returns the Admin to the profile page without making any changes
+- The green edit button updates the recipe details with the new data from all the form input fields
 
 #### **Information Pages** ####
+The following page contains: 
+- information to the web page owners
+- contact information to the web page owners with an click on link to the contact email address
+- the purpose of this web page
+- all terms and conditions informations
 
+  [Contact Page](Documentation/layout/contactPage.png)
+
+  [About Us Page](Documentation/layout/aboutUsPage.png)
+  
+  [Advertise Page](Documentation/layout/advertisePage.png)
+  
+  [Accessibility Page](Documentation/layout/accessibilityPage.png)
+  
+  [Terms Of Use Page](Documentation/layout/termsOfUsePage.png)
+ 
+  [Privacy Policy Page](Documentation/layout/privacypolicyPage.png)
   
 ### **Products** ###
 The Product section is at the bottom of the:
