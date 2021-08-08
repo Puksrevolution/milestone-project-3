@@ -452,6 +452,27 @@ The Product section contains:
     ![HTTP 503 Error](Documentation/error/503.png)
 
 ### **Future Features** ###
+Site Features:
+- More recipe details
+- Recipe rating
+- Ability to click on other user profiles and see recipes they posted
+- Nutrition calculations
+- User comments section on the recipes
+- Blog
+- Vlog
+- Option to change languages
+
+
+Owner / Admin Account administration such as:
+- User account deactivation
+- Email service for the user by forgotten password
+- Weekly automated emails for subsribers
+
+Allowing users to:
+- Edit/Delete user profile
+- Adding thumbnail image, avatar, user images etc.
+- Upload image files as an alternative to a URL at Add Recipe Form  
+- User set back password by forgotten password with email service
 
 
 [Back to Table of contents](#table-of-contents)
