@@ -39,6 +39,13 @@ def paginated(recipes, page):
     ]
 
 
+# 3 random products
+def get_random_products():
+    products = list(mongo.db.products.aggregate([
+            {"$sample": {"size": 3}}]))
+    return products
+
+
 """
 Render the Home, Article and
 all the Footer pages
@@ -47,22 +54,15 @@ all the Footer pages
 
 @app.route("/")
 def index():
-    # 6 random recipes #
-    recipes = mongo.db.recipes
-    random_recipes = (
-        [recipe for recipe in recipes.aggregate([
-            {"$sample": {"size": 6}}])])
-    # 3 random products #
-    products = mongo.db.products
-    random_products = (
-        [product for product in products.aggregate([
-            {"$sample": {"size": 3}}])])
+    # 6 random recipes
+    recipes = list(mongo.db.recipes.aggregate([
+            {"$sample": {"size": 6}}]))
+    # 3 random products
+    products = get_random_products()
     return render_template("index.html",
                            page_title="Yummy Recipes",
                            recipes=recipes,
-                           random_recipes=random_recipes,
-                           products=products,
-                           random_products=random_products)
+                           products=products)
 
 
 @app.route("/article")
@@ -107,11 +107,8 @@ User account management
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
-    # 3 random products #
-    products = mongo.db.products
-    random_products = (
-        [product for product in products.aggregate([
-            {"$sample": {"size": 3}}])])
+    # 3 random products
+    products = get_random_products()
     """
     Allows the user to create a new account with
     a unique username and password
@@ -139,17 +136,13 @@ def signup():
         return redirect(url_for("profile", username=session["user"]))
 
     return render_template("signup.html", page_title="Sign Up",
-                           products=products,
-                           random_products=random_products)
+                           products=products)
 
 
 @app.route("/signin", methods=["GET", "POST"])
 def signin():
-    # 3 random products #
-    products = mongo.db.products
-    random_products = (
-        [product for product in products.aggregate([
-            {"$sample": {"size": 3}}])])
+    # 3 random products
+    products = get_random_products()
     """
     Allows the user to sign in with username and password.
     Checks for validity of username and password entered.
@@ -179,8 +172,7 @@ def signin():
             return redirect(url_for("signin"))
 
     return render_template("signin.html", page_title="Sign In",
-                           products=products,
-                           random_products=random_products)
+                           products=products)
 
 
 @ app.route('/signout')
@@ -195,11 +187,8 @@ def signout():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    # 3 random products #
-    products = mongo.db.products
-    random_products = (
-        [product for product in products.aggregate([
-            {"$sample": {"size": 3}}])])
+    # 3 random products
+    products = get_random_products()
     """
     Render the user profile page using the logged in user's
     data in the database.
@@ -233,10 +222,10 @@ def profile(username):
                     "profile", username=session["user"]))
             else:
                 flash("Password don't match, try again!", "error")
-        return render_template(
-            "profile.html", username=username, users=users,
-            recipes=recipes, favourites=favourites,
-            random_products=random_products)
+        return render_template("profile.html", page_title="Profile",
+                               username=username, users=users,
+                               recipes=recipes, favourites=favourites,
+                               products=products)
 
     return redirect(url_for("login"))
 
@@ -258,19 +247,15 @@ def all_recipes():
     pagination_obj = paginated(recipes, page)
     paginated_recipes = pagination_obj[0]
     pagination = pagination_obj[1]
-    # 3 random products #
-    products = mongo.db.products
-    random_products = (
-        [product for product in products.aggregate([
-            {"$sample": {"size": 3}}])])
+    # 3 random products
+    products = get_random_products()
 
     return render_template("recipes.html",
                            page_title="All Recipes",
                            recipes=paginated_recipes,
                            recipe_paginated=paginated_recipes,
                            pagination=pagination,
-                           products=products,
-                           random_products=random_products)
+                           products=products)
 
 
 @app.route("/view_recipe/<recipe_id>", methods=["GET", "POST"])
@@ -281,14 +266,10 @@ def view_recipe(recipe_id):
     """
     # Get one recipe from DB #
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    # 3 random products #
-    products = mongo.db.products
-    random_products = (
-        [product for product in products.aggregate([
-            {"$sample": {"size": 3}}])])
+    # 3 random products
+    products = get_random_products()
     return render_template("view_recipe.html", recipe=recipe,
                            products=products,
-                           random_products=random_products,
                            page_title="Recipe")
 
 
@@ -390,11 +371,8 @@ def search():
     pagination_obj = paginated(recipes, page)
     paginated_recipes = pagination_obj[0]
     pagination = pagination_obj[1]
-    # 3 random products #
-    products = mongo.db.products
-    random_products = (
-        [product for product in products.aggregate([
-            {"$sample": {"size": 3}}])])
+    # 3 random products
+    products = get_random_products()
 
     return render_template("recipes.html",
                            page_title="Search Result",
@@ -403,8 +381,7 @@ def search():
                            recipe_paginated=paginated_recipes,
                            pagination=pagination,
                            search=True,
-                           products=products,
-                           random_products=random_products)
+                           products=products)
 
 
 """
