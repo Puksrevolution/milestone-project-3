@@ -602,8 +602,22 @@ Allowing users to:
 Testing
 ======
 
+### **TESTIN.md** ###
 Testing information can be found in a separate [TESTING.md](Documentation/TESTING.md).
 
+### **Mentor Session** ###
+**Style Changes**
+- Navbar Item more spacing
+- Title more spacing
+- Reducing shadow styling .link
+- Gallery Image Card reduce scale transform
+- Product Back Cards
+  - remove the stylish line 
+  - no shadow style for button
+
+**HTML File Changes**
+
+**Back End Changes**
 
 Bugs
 ======
