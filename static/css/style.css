@@ -63,7 +63,7 @@ hr {
 
 .main {
     position: relative;
-    margin: 2rem 1rem 4rem 1rem;
+    margin: 4rem 1rem;
 }
 
 /*--Components--*/
@@ -79,8 +79,7 @@ hr {
 
 .navbar .navbar-nav .nav-link {
     color: #0F0A0A;
-    font-size: 1.1rem;
-    padding: 0rem 0.4rem 0.1rem 0.4rem;
+    font-size: 1.1rem;    
 }
 .navbar .navbar-nav .nav-link:hover {
     color: #6D6A75;
@@ -219,6 +218,11 @@ hr {
 
 .btn-buy {
     width: 70%;
+    box-shadow: none;
+    font-weight: bold;
+    padding: 4rem 2rem;
+    margin: 0;
+    font-size: large;
 }
 
 .btn-lavender {
@@ -305,7 +309,7 @@ hr {
 
 .gallery__image:hover {
     box-shadow: 0 0 1rem #0F0A0A;
-    transform: scale(1.1);
+    transform: scale(1.02);
     z-index: 10;
     transition: filter 0.2s ease-in-out, box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out, z-index 0s linear;
     filter: contrast(1) brightness(1) saturate(1);
@@ -456,11 +460,7 @@ hr {
     right: -0.0625rem;
     bottom: -0.0625rem;
     z-index: 2;
-    background-color: #e3dfff;
-    background-image: linear-gradient(90deg, transparent calc(50% - 0.03125rem), #FEF9EF calc(50% - 0.03125rem), #FEF9EF calc(50% + 0.03125rem), transparent calc(50% + 0.03125rem)), linear-gradient(135deg, #e3dfff 0%, #e3dfff 100%);
-    background-repeat: no-repeat, no-repeat;
-    background-position: center top, center center;
-    background-size: 100% calc(50% - 4rem), 100% 100%;
+    background-color: #e3dfff;    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -556,6 +556,14 @@ form .form__input-icon {
 }
 
 /*Utility Classes*/
+.section-top {
+    margin-top: 5rem;
+}
+
+.sub-title {
+    margin: 5rem 0 4rem 0;
+}
+
 .underline:hover {
     text-decoration: underline;
 }
@@ -569,13 +577,10 @@ form .form__input-icon {
 }
 
 .link {
-    padding-top: 0.5rem;
-    text-shadow: 0 0 0.15rem #6D6A75;
+    padding-top: 0.5rem;    
 }
 .link:hover {
-    color: #6D6A75;
-    text-shadow: none;
-    text-decoration: underline;
+    color: #6D6A75;    
 }
 
 .ul__list {
@@ -706,6 +711,7 @@ a.remove:hover span {
 @media (max-width: 48em) {
     .navbar .navbar-nav .nav-link {
         display: inline-block;
+        padding: 0.5rem;
     }
     .footer__footer {
         padding-bottom: 2.5rem;
