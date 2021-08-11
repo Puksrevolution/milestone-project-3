@@ -20,7 +20,7 @@
 </div>
 
 {% if search %}
-<h2 class="text-center query"><strong> {{query}} </strong></h2>
+<h2 class="text-center upperc"><strong> {{query}} </strong></h2>
 {% endif %}
 
 <!-- One Recipe -->
@@ -111,7 +111,9 @@
                 </div>
                 <div class="products__card-hover">
                     <a class="btn btn-sm btn-buy" target="_blank" rel="noreferrer" href="{{ product.product_link }}">
-                        Buy It: {{ product.product_price }} Amazon
+                        Buy It: <br> 
+                        {{ product.product_price }} <br>
+                        Amazon
                     </a>
                 </div>
             </div>

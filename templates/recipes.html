@@ -2,7 +2,7 @@
 
 {% block content %}
 <!-- Search Box-->
-<div class="row justify-content-center mt-5">
+<div class="row justify-content-center my-5">
     <div class="col-12 col-md-8 col-lg-6">
         <form  action="{{ url_for('search') }}" method="post">
             <div class="row g-3">                       
@@ -20,12 +20,12 @@
 </div>
 
 {% if search %}
-<h2 class="text-center query"><strong> {{query}} </strong></h2>
+<h2 class="text-center upperc"><strong> {{query}} </strong></h2>
 {% endif %}
 
 <!-- Recipe Cards -->
 {% if recipes|length > 0 %}
-<div>
+<div class="mt-5">
     <div class="row justify-content-center">
         {% for recipe in recipes %}
         <div class="col-10 col-md-6 col-lg-4 align-self-center mb-4">            
@@ -111,7 +111,9 @@
                 <div class="products__card-hover">
                     <a class="btn btn-sm btn-buy" target="_blank" rel="noreferrer"
                         href="{{ product.product_link }}">
-                        Buy It: {{ product.product_price }} Amazon
+                        Buy It: <br> 
+                        {{ product.product_price }} <br>
+                        Amazon
                     </a>
                 </div>
             </div>
