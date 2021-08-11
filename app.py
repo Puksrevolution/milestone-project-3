@@ -376,6 +376,7 @@ def search():
 
     return render_template("recipes.html",
                            page_title="Search Result",
+                           query=query,
                            recipes=recipes,
                            total=len(recipes),
                            recipe_paginated=paginated_recipes,

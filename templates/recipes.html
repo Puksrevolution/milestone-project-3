@@ -19,9 +19,13 @@
     </div>
 </div>
 
+{% if search %}
+<h2 class="text-center query"><strong> {{query}} </strong></h2>
+{% endif %}
+
 <!-- Recipe Cards -->
 {% if recipes|length > 0 %}
-<div class="sub-title">
+<div>
     <div class="row justify-content-center">
         {% for recipe in recipes %}
         <div class="col-10 col-md-6 col-lg-4 align-self-center mb-4">            
