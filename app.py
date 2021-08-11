@@ -200,34 +200,34 @@ def profile(username):
     recipes = list(mongo.db.recipes.find())
     favourite_recipes = mongo.db.users.find_one(
                 {"username": session["user"]})["favourite_recipes"]
-    # Favourites Array #
+    # Favourite recipe display functionality advised by CI tutors #
     favourites = []
-    # Push to Favourites Array #
+    # To push to favourites array #
     for recipe in favourite_recipes:
         favourites.append(mongo.db.recipes.find_one({"_id": recipe}))
-    # Change Password #
     if session["user"]:
-        if request.method == "POST":
-            # finds the Users-Profile in db
-            users = mongo.db.users.find_one(
-                {"username": session["user"]})
-            # Edit Password functionality #
-            if str(request.form.get("password")) == str(
-                    request.form.get("confirm-password")):
-                newvalue = {"$set": {"password": generate_password_hash(
-                    str(request.form.get("password")))}}
-                mongo.db.users.update_one(users, newvalue)
-                flash("Password successfully updated!", "success")
-                return redirect(url_for(
-                    "profile", username=session["user"]))
-            else:
-                flash("Password don't match, try again!", "error")
         return render_template("profile.html", page_title="Profile",
                                username=username, users=users,
                                recipes=recipes, favourites=favourites,
                                products=products)
 
-    return redirect(url_for("login"))
+
+@app.route("/change-password", methods=["GET", "POST"])
+def change_password():
+    if request.method == "POST":
+        current_user = mongo.db.users.find_one(
+            {"username": session["user"]})
+        if str(request.form.get("password")) == str(
+                request.form.get("confirm-password")):
+            newvalue = {"$set": {"password": generate_password_hash(
+                str(request.form.get("password")))}}
+            mongo.db.users.update_one(current_user, newvalue)
+            flash("Password successfully updated!", "success")
+            return redirect(url_for("profile", username=session["user"]))
+        else:
+            flash("Passwords don't match, try again!", "error")
+            return redirect(url_for("profile", username=session["user"]))
+    return redirect(url_for("profile", username=session["user"]))
 
 
 """
