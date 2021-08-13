@@ -414,7 +414,7 @@ The recipes page contains:
   
 - a favourite button to add a recipe to the favourite list only available to logged in users 
 
-  ![Favourite Button](Documentation/layout/recipesFav.png)
+  ![Favourite Button](Documentation/layout/fav_recipes.png)
 
 - a edit and delete button only available for the Admin
 
@@ -599,11 +599,16 @@ Allowing users to:
 [Back to Table of contents](#table-of-contents)
 
 
-Testing
+Testing 
 ======
 
 ### **TESTIN.md** ###
 Testing information can be found in a separate [TESTING.md](Documentation/TESTING.md).
+
+Bugs
+======
+
+Some informations of bugs and bugs fix can be found in [TESTING.md](Documentation/TESTING.md).
 
 ### **Mentor Session** ###
 **Style Changes**
@@ -614,15 +619,34 @@ Testing information can be found in a separate [TESTING.md](Documentation/TESTIN
 - Product Back Cards
   - remove the stylish line 
   - no shadow style for button
+- Default background colour for Favourite Button
 
 **HTML File Changes**
+- Recipe default image for recipes.html and view_recipe.html
+- Add query message for search result for recipes.html and view_recipe.html
+- add query message to search result
 
 **Back End Changes**
-
-Bugs
-======
-
-All information of bug and bugs fix can be found in a separate [TESTING.md](Documentation/TESTING.md).
+- optimizing random Products funtion
+- change-password in seperate function
+- add query to html
+- add abort
+- add vriable ADMIN_USER_NAME = "admin"
+- Profile
+  - optimized profile def
+  - bug fix favourite recipes + remove button
+  - bug fix Admin edit functionality for all recipes 
+- Recipe
+  - add try: get single recipe exept: redirect to 404 error 
+- Edit Recipe
+  - bug fix Admin edit functionality for all recipes
+  - add try: get single recipe exept: redirect to 404 error
+- optimized delete functionality
+- favourite functionality
+  - optimized function
+  - bug fix favourite show, add, remove functionality
+- remove favourite functionality
+  - bug fix remove functionality
 
 [Back to Table of contents](#table-of-contents)
 
