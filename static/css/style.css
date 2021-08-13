@@ -253,6 +253,9 @@ hr {
     background-color: #E3DFFF;
 }
 
+.btn-heart {
+    background-color: #e3dfff;    
+}
 .btn-heart:hover {
     background-color: #ff6682;
     color: #FEF9EF;
