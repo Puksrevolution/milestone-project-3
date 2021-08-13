@@ -8,7 +8,7 @@ import os
 from flask_paginate import Pagination, get_page_parameter
 from flask import (
     Flask, flash, render_template,
-    redirect, request, session, url_for)
+    redirect, request, session, url_for, abort)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -24,6 +24,9 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+
+# Admin
+ADMIN_USER_NAME = "admin"
 
 # Pagination #
 PER_PAGE = 8
@@ -185,8 +188,8 @@ def signout():
     return redirect(url_for('index'))
 
 
-@app.route("/profile/<username>", methods=["GET", "POST"])
-def profile(username):
+@app.route("/profile", methods=["GET", "POST"])
+def profile():
     # 3 random products
     products = get_random_products()
     """
@@ -194,22 +197,33 @@ def profile(username):
     data in the database.
     """
     # Retrieve users and recipes to use on profile page #
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-    users = list(mongo.db.users.find())
-    recipes = list(mongo.db.recipes.find())
-    favourite_recipes = mongo.db.users.find_one(
-                {"username": session["user"]})["favourite_recipes"]
-    # Favourite recipe display functionality advised by CI tutors #
+    username = session["user"]
+    user_details = mongo.db.users.find_one({"username": session["user"]})
+    favourite_recipe_id_list = user_details["favourite_recipes"]
+    recipes_by_me = []
+    if username == ADMIN_USER_NAME:
+        recipes_by_me = list(mongo.db.recipes.find())
+    else:
+        recipes_by_me = list(mongo.db.recipes.find({"user": username}))
+    # Favourites Array #
     favourites = []
-    # To push to favourites array #
-    for recipe in favourite_recipes:
-        favourites.append(mongo.db.recipes.find_one({"_id": recipe}))
-    if session["user"]:
-        return render_template("profile.html", page_title="Profile",
-                               username=username, users=users,
-                               recipes=recipes, favourites=favourites,
-                               products=products)
+    # Push to Favourites Array #
+    for recipe_id in favourite_recipe_id_list:
+        is_valid_recipe = True
+        try:
+            recipe_detail = mongo.db.recipes.find_one({"_id": recipe_id})
+            if not recipe_detail:
+                is_valid_recipe = False
+        except:
+            is_valid_recipe = False
+        if is_valid_recipe:
+            favourites.append(recipe_detail)
+    return render_template("profile.html",
+                           page_title="Profile",
+                           username=username,
+                           recipes_by_me=recipes_by_me,
+                           favourites=favourites,
+                           products=products)
 
 
 @app.route("/change-password", methods=["GET", "POST"])
@@ -265,9 +279,15 @@ def view_recipe(recipe_id):
     render the View Recipe Page
     """
     # Get one recipe from DB #
-    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    # 3 random products
+    recipe = None
+    try:
+        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    except:
+        abort(404)
+
+    # 3 random products #
     products = get_random_products()
+
     return render_template("view_recipe.html", recipe=recipe,
                            products=products,
                            page_title="Recipe")
@@ -303,39 +323,42 @@ def edit_recipe(recipe_id):
     """
     Render the Edit Recipe page if a user is logged in.
     """
+    if not session["user"]:
+        return redirect(url_for("index"))
+
     # Request form fields #
-    if session["user"]:
-        if request.method == "POST":
-            # grab the session user's details from db
-            username = mongo.db.users.find_one(
-                {"username": session["user"]})
-            # grab the recipe details
-            recipe = mongo.db.recipes.find_one(
-                {"_id": ObjectId(recipe_id)})
+    if request.method == "POST":
+        # grab the session user's details from db
+        username = session["user"]
+        # grab the recipe details
+        recipe = mongo.db.recipes.find_one(
+            {"_id": ObjectId(recipe_id)})
 
-            # if it's user or admin then allow edit
-            if (session["user"] == recipe["user"] or
-                    username == "admin"):
+        # if it's user or admin then allow edit
+        if session["user"] == recipe["user"] or username == ADMIN_USER_NAME:
 
-                recipe_edit = {
-                    "recipe_name": request.form.get("recipe_name"),
-                    "image": request.form.get("image"),
-                    "time": request.form.get("time"),
-                    "difficulty": request.form.get("difficulty"),
-                    "ingredients": request.form.get("ingredients"),
-                    "directions": request.form.get("directions"),
-                    "user": session["user"]
-                }
-                # update recipe on DB #
-                mongo.db.recipes.update_one(
-                    {"_id": ObjectId(recipe_id)},
-                    {"$set": recipe_edit})
-                flash("Recipe Successfully Updated", "success")
-                return redirect(url_for("profile", username=session["user"]))
+            recipe_edit = {
+                "recipe_name": request.form.get("recipe_name"),
+                "image": request.form.get("image"),
+                "time": request.form.get("time"),
+                "difficulty": request.form.get("difficulty"),
+                "ingredients": request.form.get("ingredients"),
+                "directions": request.form.get("directions")
+            }
+            # update recipe on DB #
+            mongo.db.recipes.update_one(
+                {"_id": ObjectId(recipe_id)},
+                {"$set": recipe_edit})
+            flash("Recipe Successfully Updated", "success")
+            return redirect(url_for("profile", username=session["user"]))
 
-    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    return render_template(
-        "edit_recipe.html", recipe=recipe, page_title="Edit Recipe")
+    recipe = None
+    try:
+        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    except:
+        abort(404)
+    return render_template("edit_recipe.html",
+                           recipe=recipe, page_title="Edit Recipe")
 
 
 @app.route("/delete_recipe/<recipe_id>")
@@ -345,8 +368,6 @@ def delete_recipe(recipe_id):
     deletes the selected Recipe from the database.
     """
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
-    list(mongo.db.users.find(
-        {"favourite_recipes": ObjectId(recipe_id)}))
     # Remove recipe from array in DB #
     mongo.db.users.find_one_and_update(
             {"username": session["user"].lower()},
@@ -395,12 +416,11 @@ def favourite_recipe(recipe_id):
     favourites list
     """
     if session["user"]:
-        favourites = mongo.db.users.find(
-            {"favourite_recipes": ObjectId(recipe_id)})
-        recipe = mongo.db.users.find_one(
-            {"favourite_recipes": ObjectId(recipe_id)})
+        favourite_recipe_ids = mongo.db.users.find_one(
+            {"username": session["user"]})["favourite_recipes"]
+
         # Check favourite is not already added #
-        if recipe in favourites:
+        if ObjectId(recipe_id) in favourite_recipe_ids:
             flash("This recipe is already in your favourites!", "error")
             return redirect(url_for("all_recipes"))
 
@@ -418,20 +438,17 @@ Recipe remove favourite button functionality
 """
 
 
-@app.route("/remove_recipe/<recipe_id>", methods=["GET", "POST"])
-def remove_recipe(recipe_id):
+@app.route("/remove_favourite/<recipe_id>", methods=["GET", "POST"])
+def remove_favourite(recipe_id):
     """
     Remove Recipe function
     removes the favourite Recipe from the database.
     """
-    favourites = list(mongo.db.users.find(
-        {"favourite_recipes": ObjectId(recipe_id)}))
     mongo.db.users.find_one_and_update(
         {"username": session["user"].lower()},
         {"$pull": {"favourite_recipes": ObjectId(recipe_id)}})
     flash("Recipe removed from your favourites!", "success")
-    return redirect(url_for(
-        "profile", username=session["user"], favourites=favourites))
+    return redirect(url_for("profile", username=session["user"]))
 
 
 """
