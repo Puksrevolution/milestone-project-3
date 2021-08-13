@@ -287,7 +287,6 @@ def add_recipe():
             "difficulty": request.form.get("difficulty"),
             "ingredients": request.form.get("ingredients"),
             "directions": request.form.get("directions"),
-            "created_by": request.form.get("created_by"),
             "user": session["user"]
         }
         # add collect data to recipes DB #
@@ -325,7 +324,6 @@ def edit_recipe(recipe_id):
                     "difficulty": request.form.get("difficulty"),
                     "ingredients": request.form.get("ingredients"),
                     "directions": request.form.get("directions"),
-                    "created_by": request.form.get("created_by"),
                     "user": session["user"]
                 }
                 # update recipe on DB #
