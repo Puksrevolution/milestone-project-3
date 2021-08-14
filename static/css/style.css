@@ -774,4 +774,7 @@ a.remove:hover span {
     .pt {
         padding-top: 0.75rem;
     }
+    .form__label {
+        margin: 0.4rem 0 0.4rem 3rem;
+    }
 }
