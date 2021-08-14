@@ -345,7 +345,7 @@ hr {
 
 .recipe__icon-text {
     font-family: 'Montserrat', sans-serif;
-    font-size: smaller;
+    font-size: x-small;
 }
 
 .user__icon {
@@ -372,7 +372,7 @@ hr {
 
 .product__image-container {
     position: relative;
-    background-color: #FEF9EF;
+    background-color: #FFF;
     border: 7px solid #e3dfff;
 }
 
@@ -419,7 +419,7 @@ hr {
 
 .products__image-container {
     position: relative;
-    background-color: #FEF9EF;
+    background-color: #FFF;
 }
 
 .products__image-container::before {

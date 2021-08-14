@@ -26,7 +26,7 @@
 <div class="mt-5">
     <div class="row justify-content-center">
         {% for recipe in recipes %}
-        <div class="col-10 col-md-6 col-lg-4 align-self-center mb-4">            
+        <div class="col-10 col-md-6 col-lg-4 align-self-center mb-3">            
             <div class="card recipes__card-image">
                 <a href="{{ url_for('view_recipe', recipe_id=recipe._id) }}">
                     <img class="recipes__image" src="{{ recipe.image }}"
@@ -43,7 +43,7 @@
                 <div class="row justify-content-center">
                     <ul class="pt pt-lg-3">
                         <li class="fas fa-clock recipe__icon recipe__icon-right"> <span class="recipe__icon-text">Cook: {{ recipe.time }}</span></li>
-                        <i class="fas fa-signal recipe__icon"> <span class="recipe__icon-text">Difficulty: {{ recipe.difficulty }}</span></i>                         
+                        <li class="fas fa-signal recipe__icon"> <span class="recipe__icon-text">Difficulty: {{ recipe.difficulty }}</span></li>                         
                     </ul>
                 </div>
                 <div class="row justify-content-center mt-3">
