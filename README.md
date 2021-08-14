@@ -608,7 +608,37 @@ Testing information can be found in a separate [TESTING.md](Documentation/TESTIN
 Bugs
 ======
 
-Some informations of bugs and bugs fix can be found in [TESTING.md](Documentation/TESTING.md).
+### **HTML Bugs [W3C Markup Validation](https://validator.w3.org/):** ###
+
+- all_recipe.html
+```
+typo
+<i> element instead of <li> element
+
+bug fixed:
+corrected the typo
+```
+
+- view_recipe.html
+```
+bad value for attribute on <img> element
+width="100%"
+
+bug fixed:
+removed bad attribute + value
+```
+
+- add_recipe.html and edit_recipe.html
+```
+missing value attribute in <option> element
+
+<textarea> element with not allowed type attribute
+
+bug fixed:
+added the missign value attribute to the <option> element
+
+removed the type attribute from <textarea> element
+```
 
 ### **Mentor Session** ###
 **Style Changes**
