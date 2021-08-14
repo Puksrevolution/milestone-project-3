@@ -113,7 +113,7 @@ HTML, CSS, JavaScript, Python+Flask, MongoDB, Heroku
 - To make a project with a great looking layout, that works and that is practical
 - To create a web application that makes the user want to stay and use with pleasure
 
-- to use the CRUD features for this app to interaction with the MongoDB database management system.
+- To use the CRUD features for this app to interaction with the MongoDB database management system.
 
 **Create** - or upload a data into the database which can then be viewed by all other registered users.
 
@@ -258,7 +258,7 @@ Public Page
 - [Recipes Page](Documentation/wireframes/recipesPublic-page.png)
 - [Search Result](Documentation/wireframes/searchRecipe.png)
 - [Recipe Page](Documentation/wireframes/recipePublic-page.png)
-- [Sign Up](Documentation/wireframes/signUP-page.png)
+- [Sign Up](Documentation/wireframes/signUp-page.png)
 - [Sign In](Documentation/wireframes/signIn-page.png)
 - [Template Page](Documentation/wireframes/template-page.png)
   - Contact, About Us, Advertise, Accessibility, Terms Of Use, Privacy Policy 
@@ -268,7 +268,7 @@ For registered Users
 - [Recipes Page](Documentation/wireframes/recipesUser-page.png)
 - [Recipe Page](Documentation/wireframes/recipeUser-page.png)
 - [Add Recipe](Documentation/wireframes/addRecipe-page.png)
-- [Edit Recipe](Documentation/wireframes/editRecipeUser-page.png)
+- [Edit Recipe](Documentation/wireframes/editRecipe-page.png)
 
 For Admin
 - [Profile Page](Documentation/wireframes/profileAdmin-page.png)
@@ -333,7 +333,7 @@ Technologies
   - An online IDE linked to the GitHub repository used for the majority of the code development.
 - [Heroku](https://heroku.com/)
   - Used to run and scale the web application.  
-- [CodePen](https://codepen.io/simonjvardy/)
+- [CodePen](https://codepen.io)
   - An online code editor and open-source learning environment used to test small sections of code quickly and easily.
 - [Font-Awesome](https://fontawesome.com/icons?d=gallery)
   - Used for icons to enhance headings and add emphasis to text.
@@ -587,7 +587,7 @@ Site Features:
 Owner / Admin Account administration such as:
 - User account deactivation
 - Email service for the user by forgotten password
-- Weekly automated emails for subsribers
+- Weekly automated emails for subscribers
 
 Allowing users to:
 - Edit/Delete user profile
@@ -912,9 +912,17 @@ a.tip:hover span {
 }
 ```
 
+**How to use the onerror attribute for an img element**
+```
+<img src="invalid_link"
+     onerror="this.onerror=null;this.src='https://placeimg.com/200/300/animals';">
+```
+
 **[Udemy](https://www.udemy.com/)**
 - [Jannis Seemann (CodingCourses.TV)](https://www.udemy.com/user/jannis-seemann-3/?src=sac&kw=Jannis+Seemann)
-  - CSS Code Snippet from Fortgeschrittenes CSS for the Product Cards
+  - CSS Code Snippet from Fortgeschrittenes CSS for:
+    - the Product Cards Section
+    - the Sign Up and Sign In Form
 
 **[GitHub](https://github.com/)**
 - [paulvmking](https://github.com/paulvmking/y)

@@ -6,5 +6,5 @@
     "difficulty": "String",
     "ingredients": "String",
     "directions": "String",
-    "created_by": "String"
+    "user": "String"
 }
