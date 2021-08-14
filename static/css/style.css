@@ -754,8 +754,8 @@ a.remove:hover span {
 
 @media (min-width: 36em) {
     .pr {
-        padding-right: 0;
-    }
+        padding-right: 0px;
+    }       
 }
 
 @media (max-width: 30em) {
