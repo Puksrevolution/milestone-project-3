@@ -559,6 +559,9 @@ form .form__input-icon {
 }
 
 /*Utility Classes*/
+.mt-6 {
+    margin-top: 4rem;
+}
 .section-top {
     margin-top: 5rem;
 }
