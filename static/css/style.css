@@ -562,6 +562,7 @@ form .form__input-icon {
 .mt-6 {
     margin-top: 4rem;
 }
+
 .section-top {
     margin-top: 5rem;
 }
@@ -643,6 +644,7 @@ form .form__input-icon {
 a.remove:hover {
     position: relative
 }
+
 a.remove span {
     display: none;
 }

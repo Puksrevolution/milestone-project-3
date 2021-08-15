@@ -25,7 +25,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-# Admin
+# Admin #
 ADMIN_USER_NAME = "admin"
 
 # Pagination #
@@ -42,7 +42,7 @@ def paginated(recipes, page):
     ]
 
 
-# 3 random products
+# 3 random products #
 def get_random_products():
     products = list(mongo.db.products.aggregate([
             {"$sample": {"size": 3}}]))
@@ -117,7 +117,7 @@ def signup():
     a unique username and password
     """
     if request.method == "POST":
-        # check if username already exists in db
+        # check if username already exists in MongoDB
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
@@ -152,7 +152,7 @@ def signin():
     Redirects user to profile page after successful login.
     """
     if request.method == "POST":
-        # check if username exists in db
+        # check if username exists in MongoDB
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
@@ -196,7 +196,7 @@ def profile():
     Render the user profile page using the logged in user's
     data in the database.
     """
-    # Retrieve users and recipes to use on profile page #
+    # Retrieve user and recipe data to use on profile page
     username = session["user"]
     user_details = mongo.db.users.find_one({"username": session["user"]})
     favourite_recipe_id_list = user_details["favourite_recipes"]
@@ -205,9 +205,9 @@ def profile():
         recipes_by_me = list(mongo.db.recipes.find())
     else:
         recipes_by_me = list(mongo.db.recipes.find({"user": username}))
-    # Favourites Array #
+    # Favourites Array
     favourites = []
-    # Push to Favourites Array #
+    # Push to Favourites Array in MongoDB
     for recipe_id in favourite_recipe_id_list:
         is_valid_recipe = True
         try:
@@ -254,9 +254,9 @@ def all_recipes():
     """
     Render the Recipes page for all site visitors
     """
-    # Get all recipes from DB #
+    # Get all recipes from MongoDB
     recipes = list(mongo.db.recipes.find().sort("_id", -1))
-    # Pagination #
+    # Pagination
     page = request.args.get(get_page_parameter(), type=int, default=1)
     pagination_obj = paginated(recipes, page)
     paginated_recipes = pagination_obj[0]
@@ -278,14 +278,14 @@ def view_recipe(recipe_id):
     Get the recipe details for the selected recipe and
     render the View Recipe Page
     """
-    # Get one recipe from DB #
+    # Get one recipe from MongoDB
     recipe = None
     try:
         recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     except:
         abort(404)
 
-    # 3 random products #
+    # 3 random products
     products = get_random_products()
 
     return render_template("view_recipe.html", recipe=recipe,
@@ -309,7 +309,7 @@ def add_recipe():
             "directions": request.form.get("directions"),
             "user": session["user"]
         }
-        # add collect data to recipes DB #
+        # add collect data to recipes MongoDB
         mongo.db.recipes.insert_one(recipe)
         flash("Recipe Successfully Added", "success")
         return redirect(url_for("profile", username=session["user"]))
@@ -326,9 +326,9 @@ def edit_recipe(recipe_id):
     if not session["user"]:
         return redirect(url_for("index"))
 
-    # Request form fields #
+    # Request form fields
     if request.method == "POST":
-        # grab the session user's details from db
+        # grab the session user's details from MongoDB
         username = session["user"]
         # grab the recipe details
         recipe = mongo.db.recipes.find_one(
@@ -345,7 +345,7 @@ def edit_recipe(recipe_id):
                 "ingredients": request.form.get("ingredients"),
                 "directions": request.form.get("directions")
             }
-            # update recipe on DB #
+            # update recipe on MongoDB
             mongo.db.recipes.update_one(
                 {"_id": ObjectId(recipe_id)},
                 {"$set": recipe_edit})
@@ -365,7 +365,7 @@ def edit_recipe(recipe_id):
 def delete_recipe(recipe_id):
     """
     Delete Recipe function
-    deletes the selected Recipe from the database.
+    deletes the selected Recipe from MongoDB
     """
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
     # Remove recipe from array in DB #
@@ -382,10 +382,10 @@ def search():
     Search function
     filters the recipes based on the text index query.
     """
-    # Search functionality #
+    # Search functionality
     query = request.form.get("query")
     recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
-    # Pagination #
+    # Pagination
     page = request.args.get(get_page_parameter(), type=int, default=1)
     pagination_obj = paginated(recipes, page)
     paginated_recipes = pagination_obj[0]
@@ -412,6 +412,7 @@ Recipe add favourite button functionality
 @app.route("/favourite_recipe/<recipe_id>", methods=["GET", "POST"])
 def favourite_recipe(recipe_id):
     """
+    Favourite function
     Allows the user to add a recipe to their personal
     favourites list
     """
@@ -419,12 +420,12 @@ def favourite_recipe(recipe_id):
         favourite_recipe_ids = mongo.db.users.find_one(
             {"username": session["user"]})["favourite_recipes"]
 
-        # Check favourite is not already added #
+        # Check favourite is not already added
         if ObjectId(recipe_id) in favourite_recipe_ids:
             flash("This recipe is already in your favourites!", "error")
             return redirect(url_for("all_recipes"))
 
-        # Add recipeId to favourites array in user collection #
+        # Add recipeId to favourites array in user collection
         else:
             mongo.db.users.find_one_and_update(
                 {"username": session["user"].lower()},
@@ -441,7 +442,7 @@ Recipe remove favourite button functionality
 @app.route("/remove_favourite/<recipe_id>", methods=["GET", "POST"])
 def remove_favourite(recipe_id):
     """
-    Remove Recipe function
+    Remove Favourite function
     removes the favourite Recipe from the database.
     """
     mongo.db.users.find_one_and_update(
@@ -460,7 +461,7 @@ collect the email address from input field and write to Mongo DB
 @app.route('/sub', methods=['POST'])
 def sub():
     if request.method == "POST":
-        # check if username already exists in db
+        # check if email address already exists in Mongo DB
         existing_email = mongo.db.newsletter.find_one(
             {"email": request.form.get("email").lower()})
 
@@ -468,6 +469,7 @@ def sub():
             flash("Email already exists", "error")
             return redirect(request.referrer)
 
+        # collect the subscribe form data and write to MongoDB
         sub = mongo.db.newsletter
         return_data = request.form.to_dict()
         sub.insert_one(return_data)
