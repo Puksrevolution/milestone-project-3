@@ -48,7 +48,7 @@ Two Error messages for Bootstrap CSS <br>
 Dev: CSS code is Valid
   
 
-- [PEP8 Online validation](http://pep8online.com/checkresult)
+- [PEP8 Online validation](http://pep8online.com)
   - This linter checks the validity of Python code against the PEP8 requirements
     ![PEP8 results image](/Documentation/test/pep8-online.png)
 
