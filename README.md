@@ -665,7 +665,7 @@ removed the type attribute from <textarea> element
 - change-password in seperate function
 - add query to html
 - add abort
-- add vriable ADMIN_USER_NAME = "admin"
+- add variable ADMIN_USER_NAME = "admin"
 - Profile
   - optimized profile def
   - bug fix favourite recipes + remove button
@@ -980,6 +980,6 @@ a.tip:hover span {
 - [Simon Vardy](https://github.com/simonjvardy/) for project inspiration and README.md format ideas.
 - [Paul King](https://github.com/paulvmking/) for project inspiration, web page content ideas, support and help..
 - [Code Institute](https://codeinstitute.net/full-stack-software-development-diploma/) Course material for the inspiration from code-along challenges, specifically the Task Manager and Thorin Flask apps.
-- [Stack Overflow](https://stackoverflow.com/) For help fixing so many thing that fell over on this project!
+- [Stack Overflow](https://stackoverflow.com/) for help fixing so many thing that fell over on this project!
 
 [Back to Table of contents](#table-of-contents)
