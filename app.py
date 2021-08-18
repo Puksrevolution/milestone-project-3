@@ -214,7 +214,7 @@ def profile():
             recipe_detail = mongo.db.recipes.find_one({"_id": recipe_id})
             if not recipe_detail:
                 is_valid_recipe = False
-        except:
+        except Exception:
             is_valid_recipe = False
         if is_valid_recipe:
             favourites.append(recipe_detail)
@@ -249,7 +249,7 @@ Recipe CRUD Functionality
 """
 
 
-@app.route("/all_recipes")
+@app.route("/recipes")
 def all_recipes():
     """
     Render the Recipes page for all site visitors
@@ -272,7 +272,7 @@ def all_recipes():
                            products=products)
 
 
-@app.route("/view_recipe/<recipe_id>", methods=["GET", "POST"])
+@app.route("/recipe/<recipe_id>", methods=["GET", "POST"])
 def view_recipe(recipe_id):
     """
     Get the recipe details for the selected recipe and
@@ -282,7 +282,7 @@ def view_recipe(recipe_id):
     recipe = None
     try:
         recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    except:
+    except Exception:
         abort(404)
 
     # 3 random products
@@ -293,7 +293,7 @@ def view_recipe(recipe_id):
                            page_title="Recipe")
 
 
-@app.route("/add_recipe", methods=["GET", "POST"])
+@app.route("/recipe/add", methods=["GET", "POST"])
 def add_recipe():
     """
     Render the Add Recipe page if a user is logged in.
@@ -318,7 +318,7 @@ def add_recipe():
                            page_title="Add Recipe")
 
 
-@app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
+@app.route("/recipe/edit/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     """
     Render the Edit Recipe page if a user is logged in.
@@ -355,13 +355,13 @@ def edit_recipe(recipe_id):
     recipe = None
     try:
         recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    except:
+    except Exception:
         abort(404)
     return render_template("edit_recipe.html",
                            recipe=recipe, page_title="Edit Recipe")
 
 
-@app.route("/delete_recipe/<recipe_id>")
+@app.route("/recipe/delete/<recipe_id>")
 def delete_recipe(recipe_id):
     """
     Delete Recipe function
@@ -409,7 +409,7 @@ Recipe add favourite button functionality
 """
 
 
-@app.route("/favourite_recipe/<recipe_id>", methods=["GET", "POST"])
+@app.route("/favourite/add/<recipe_id>", methods=["GET", "POST"])
 def favourite_recipe(recipe_id):
     """
     Favourite function
@@ -439,7 +439,7 @@ Recipe remove favourite button functionality
 """
 
 
-@app.route("/remove_favourite/<recipe_id>", methods=["GET", "POST"])
+@app.route("/favourite/remove/<recipe_id>", methods=["GET", "POST"])
 def remove_favourite(recipe_id):
     """
     Remove Favourite function
@@ -458,8 +458,8 @@ collect the email address from input field and write to Mongo DB
 """
 
 
-@app.route('/sub', methods=['POST'])
-def sub():
+@app.route('/subscribe', methods=['POST'])
+def subscribe():
     if request.method == "POST":
         # check if email address already exists in Mongo DB
         existing_email = mongo.db.newsletter.find_one(
@@ -517,4 +517,4 @@ def service_unavailable(e):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)
