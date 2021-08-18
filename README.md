@@ -650,6 +650,10 @@ removed the type attribute from <textarea> element
   - remove the stylish line 
   - no shadow style for button
 - Default background colour for Favourite Button
+- Product Cards from Article Page
+  - background-color
+- Search Buttons
+  - display: flex / small device display: block
 
 **HTML File Changes**
 - Recipe default image for recipes.html and view_recipe.html
@@ -677,6 +681,8 @@ removed the type attribute from <textarea> element
   - bug fix favourite show, add, remove functionality
 - remove favourite functionality
   - bug fix remove functionality
+- optimized @app routes
+- optimized except
 
 [Back to Table of contents](#table-of-contents)
 
@@ -970,6 +976,7 @@ a.tip:hover span {
   - [Change Password functionality](https://github.com/StoneMasons4106/connect-recipes/blob/master/app.py)
 
 ### **Acknowledgements** ###
+- [Akshat Garg](https://github.com/akshatnitd) for his help, support and patience.
 - [Simon Vardy](https://github.com/simonjvardy/) for project inspiration and README.md format ideas.
 - [Paul King](https://github.com/paulvmking/) for project inspiration, web page content ideas, support and help..
 - [Code Institute](https://codeinstitute.net/full-stack-software-development-diploma/) Course material for the inspiration from code-along challenges, specifically the Task Manager and Thorin Flask apps.
