@@ -267,6 +267,12 @@ hr {
     border: 0.09rem solid #E3DFFF;
 }
 
+.btn-product {    
+    box-shadow: none;
+    background-color: #FFF;
+    border-radius: 1000px; 
+}
+
 /*Cards*/
 .card {
     background-color: transparent;
@@ -368,6 +374,7 @@ hr {
 .product__card {
     border: 8px solid #e3dfff;
     border-radius: 0.75rem;
+    background-color: #e3dfff;
 }
 
 .product__image-container {
@@ -607,6 +614,10 @@ form .form__input-icon {
     font-size: 1.3rem;
 }
 
+.dflex {
+    display: flex;
+}
+
 /*Icon*/
 .fas.fa-user-circle {
     font-size: 2rem;
@@ -778,5 +789,8 @@ a.remove:hover span {
     }
     .form__label {
         margin: 0.4rem 0 0.4rem 3rem;
+    }
+    .dflex {
+        display: block;
     }
 }
